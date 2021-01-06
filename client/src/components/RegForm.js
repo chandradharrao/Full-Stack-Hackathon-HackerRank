@@ -9,6 +9,8 @@ function RegForm(){
     const [mobNo,setMobNo] = useState("Enter your mobile Number");
     const [email,setEmail] = useState("Enter your Email");
     const [img,setImg] = useState(".../..public/idCard.png");
+    //this state variable will hold the temp url of the image uploaded
+    const [localImgUrl,setLocalImgUrl] = useState(".../..public/idCard.png");
 
     const URL = 'end-point created in the server';
 
@@ -32,6 +34,7 @@ function RegForm(){
                 break;
             case "img-input":
                 setImg({file:event.target.files[0],name:event.target.files[0].name});
+                setLocalImgUrl(URL.createObjectURL(event.target.files[0]))
                 break;
             default:
                 break;
@@ -67,9 +70,9 @@ function RegForm(){
             <input type="text" value={empID} onChange={(event)=>onChangeHandler(event)} id="empid-input"/><br></br>
             <input type="text" value={mobNo} onChange={(event)=>onChangeHandler(event)} id="mobno-input"/><br></br>
             <input type="text" value={email} onChange={(event)=>onChangeHandler(event)} id="email-input"/><br></br>
-            <input type="file" value={img} onChange={(event)=>onChangeHandler(event)} id="img-input"/><br></br>
+            <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/><br></br>
             <button onClick={onClickHandler}>Upload form</button><br></br>
-            <PreviewForm />
+            <PreviewForm prevData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
         </form>
     )
 }
