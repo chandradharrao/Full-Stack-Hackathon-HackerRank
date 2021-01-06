@@ -13,6 +13,7 @@ function RegForm(){
     const URL = 'end-point created in the server';
 
     function onChangeHandler(event){
+        //validate the form data
         switch (event.target.id) {
             case "name-input":
                 setName(event.target.value);
