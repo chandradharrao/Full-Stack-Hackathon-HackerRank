@@ -6,7 +6,7 @@ function PreviewForm({prevData}){
 
     function createPrev(){
         let temp = [];
-        const keys = ["Name","Organization name","Employee ID","Mobile Number","Email","localImgUrl"]
+        const keys = ["Name","Organization name","Employee ID","Mobile Number","Email"]
         for(var i = 0;i<(prevData.length-1);i++){
             temp.push(<p key={i}>{keys[i]} : {prevData[i]}</p>);
         }

@@ -1,8 +1,10 @@
 import {useState} from 'react';
+import {useHistory} from 'react-router-dom'
 import axios from 'axios';
 import PreviewForm from './PreviewForm';
 
 function RegForm(){
+    var history = useHistory();
     const [name,setName] = useState("Enter your full name");
     const [orgName,setOrgName] = useState("Enter your Organization Name");
     const [empID,setEmpID] = useState("Enter your employee ID");
@@ -56,6 +58,8 @@ function RegForm(){
                 console.log(`Progress : ${Math.round((ProgressEvent.loaded/ProgressEvent.total)*100)} %`)
             }
         }).then((res)=>{
+            //res will contain an user id generated at server,send this to successpage url and query the data base for user with this id and display his data
+            history.push('/successpage/:id')
             console.log(res.message);
         }).catch((err)=>{
             console.error(err);
