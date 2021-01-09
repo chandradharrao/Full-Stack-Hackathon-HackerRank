@@ -10,7 +10,7 @@ function App() {
       <Navbar/>
       <Switch>
         <Route path = "/signin" component={SignIn}/>
-        <Route path = '/registrationform' component={RegForm}/>
+        <Route path = '/signup' component={RegForm}/>
         <Route path = '/successpage/:id' component={SuccessPage}/>
       </Switch>
     </BrowserRouter>

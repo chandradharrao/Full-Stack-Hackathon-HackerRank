@@ -1,7 +1,7 @@
-{
-    "item1":{"Masala Dosa" : "10"},
-    "item2":{"Puri Sagu":"20"},
-    "item3":{"Pav Bhaji":"30"},
-    "item4":{"Pasta":"100"},
-    "item5":{"Tea":"10"}
-}
+[
+    {"name":"Masala Dosa" ,"price": "10"},
+    {"name":"Puri Sagu","price":"20"},
+    {"name":"Pav Bhaji","price":"30"},
+    {"name":"Pasta","price":"100"},
+    {"name":"Tea","price":"10"}
+]

@@ -3,8 +3,9 @@ const router = express.Router();
 const verifyUser = require("../Middlewears/verifyUser");
 const menu = require("../Database/Assets/MenuItems.json");
 
-//supply the menu
-router.get("/menu",verifyUser,(req,res)=>{
+//supply the menu : menu is not pretected resource but booking is
+//refer to this for ui: https://www.youtube.com/watch?v=oy9TEteCXdU&ab_channel=TheNetNinja
+router.get("/menu",(req,res)=>{
     res.status(200).json({menu:menu});
 })
 

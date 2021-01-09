@@ -1,40 +1,30 @@
 import axios from 'axios';
-import {useState} from 'react-router-dom';
+import {useState,useEffect} from 'react';
 
 function Menu(){
-    const [menu,setMenu] = useState(null);
-    
-
-    //admin should be able to ochange the menu
-    const URL = 'url to fetch todays menu';
-
-    function onClickHandler(){
-        axios.get(URL).then((res)=>{
-            //res will contain the object {items:[{name:dosa,price:10},{name:idli,price:15},{name:chapati,price:30}]}
-            let items = res.items;
-            let temp = [];
-            for(let i = 0;i<items.length;i++){
-                let item = items[i];
-                temp.push(<option value={item.name+"&"+item.price} key={i}>{item.name}:{item.price}</option>)
-            }
-            setMenu(temp);
+    const [menu,setMenu] = useState([]);
+    const URL = 'endpoint to get Menu json'
+    //get the menu from server
+    useEffect(()=>{
+        fetch(URL).then(res=>res.json()).then((items)=>{
+            setMenu([data])
         })
-    }
+    },[]) //run only once exctly
 
     function onSubmitHandler(){
-        let fd = new FormData();
-        axios.post({
-            
-        })
+        //post data to 
     }
 
+    //change to checkbox from select/option
     return(
         <div>
             <input type = "button" onClick={onClickHandler}/>
             <form>
                 <label for="menu">Choose Items</label>
                 <select name="menu" id="menu" onChange={}>
-                    {menu}
+                    {menu.length === 0?<p>No menu today</p>:menu.map((item,id)=>{
+                            return <option value={`${menu[id].name}&${menu[id].price}`} key={id}>{item[id].name} : {item[id].price}</option>
+                        })}
                 </select>
                 <br></br>
                 <input type="button" onClick={onSubmitHandler}>Book order</input>
