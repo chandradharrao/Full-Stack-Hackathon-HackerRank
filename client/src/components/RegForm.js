@@ -1,7 +1,10 @@
 import {useState} from 'react';
-import {useHistory} from 'react-router-dom'
-import axios from 'axios';
+import {useHistory,Link} from 'react-router-dom'
+//import axios from 'axios';
 import PreviewForm from './PreviewForm';
+
+//we need to make sure we store the image in cloudinary and supply the url and not the image itself
+//change code to first upload to cloudinary and then use the url
 
 function RegForm(){
     var history = useHistory();
@@ -17,7 +20,7 @@ function RegForm(){
     const URL = 'end-point created in the server';
 
     function onChangeHandler(event){
-        //validate the form data
+        //validate the form data using regex
         switch (event.target.id) {
             case "name-input":
                 setName(event.target.value);
@@ -44,23 +47,35 @@ function RegForm(){
     }
 
     function onClickHandler(){
-        let fd = new FormData();
-        fd.append("name",name);
-        fd.append("orgName",orgName);
-        fd.append("empid",empID);
-        fd.append("mobno",mobNo);
-        fd.append("email",email);
-        fd.append("image",img.file,img.name);
-        axios.post(URL,fd,{
+        //post object and not form data
+        //img is the url of the image after uploading to cloudinary
+        let fd = {name:null,orgName:null,empid:null,mobno:null,email:null,imgURL:null};
+        fd.name = name;
+        fd.orgName = orgName;
+        fd.email = email;
+        fd.empid = empID;
+        fd.mobno = mobNo;
+        fd.imgURL = img;
+        fd = JSON.stringify(fd);
+        /*axios.post(URL,fd,{
             //display in ui
             //attach event handler for the evnt onUploadProgress by xmlhttp req
             onUploadProgress:(ProgressEvent)=>{
                 console.log(`Progress : ${Math.round((ProgressEvent.loaded/ProgressEvent.total)*100)} %`)
             }
-        }).then((res)=>{
+        })*/
+        fetch('/upload',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "authorization":""
+            },
+            body:fd
+        }).then(res=>res.json).then((data)=>{
             //res will contain an user id generated at server,send this to successpage url and query the data base for user with this id and display his data
-            history.push('/successpage/:id')
-            console.log(res.message);
+            const id = data.regID;
+            console.log(data.message)
+            history.push('/successpage/' + id);
         }).catch((err)=>{
             console.error(err);
         })
@@ -76,7 +91,8 @@ function RegForm(){
             <input type="text" value={email} onChange={(event)=>onChangeHandler(event)} id="email-input"/><br></br>
             <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/><br></br>
             <button onClick={onClickHandler}>Upload form</button><br></br>
-            <PreviewForm prevData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
+            <Link to="/signin">Already Have an account?</Link>
+            <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
         </form>
     )
 }
