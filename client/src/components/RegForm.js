@@ -84,13 +84,30 @@ function RegForm(){
     return(
         <form>
             <h1>Registration Form</h1>
-            <input type="text" value={name} onChange={(event)=>onChangeHandler(event)} id="name-input"/><br></br>
-            <input type="text" value={orgName} onChange={(event)=>onChangeHandler(event)} id="org-input"/><br></br>
-            <input type="text" value={empID} onChange={(event)=>onChangeHandler(event)} id="empid-input"/><br></br>
-            <input type="text" value={mobNo} onChange={(event)=>onChangeHandler(event)} id="mobno-input"/><br></br>
-            <input type="text" value={email} onChange={(event)=>onChangeHandler(event)} id="email-input"/><br></br>
-            <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/><br></br>
-            <button onClick={onClickHandler}>Upload form</button><br></br>
+            <div className="input-field">
+                <input type="text" value={name} onChange={(event)=>onChangeHandler(event)} id="name-input"/>
+            </div>
+            <div className="input-field">
+                <input type="text" value={orgName} onChange={(event)=>onChangeHandler(event)} id="org-input"/>
+            </div>
+            <div className="input-field">
+                <input type="text" value={empID} onChange={(event)=>onChangeHandler(event)} id="empid-input"/>
+            </div>
+            <div className="input-field">
+                
+            </div>
+            <div className="input-field">
+                <input type="text" value={mobNo} onChange={(event)=>onChangeHandler(event)} id="mobno-input"/>
+            </div>
+            <div className="input-field">
+                <input type="text" value={email} onChange={(event)=>onChangeHandler(event)} id="email-input"/>
+            </div>
+            <div className="btn">
+                <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
+            </div>
+            <p></p>
+            <div class="waves-effect waves-light btn" onClick={onClickHandler}>Upload form</div>
+            <p></p>
             <Link to="/signin">Already Have an account?</Link>
             <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
         </form>
@@ -98,3 +115,15 @@ function RegForm(){
 }
 
 export default RegForm;
+
+/*<input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>*/
+/*<div className="file-field input-field">
+                <div class="btn">
+                    <span>ID Card Image
+                        
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text"/>
+                        </div>
+                    </span>
+                </div>
+            </div>*/
