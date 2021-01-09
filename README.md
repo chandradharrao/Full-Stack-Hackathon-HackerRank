@@ -1,6 +1,6 @@
 # Full-Stack-Hackathon-HackerRank
 
-Tech stack :
+Tech stack used : 
 
 Front End : ReactJS
 
