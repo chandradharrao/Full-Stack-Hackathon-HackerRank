@@ -3,6 +3,7 @@
 //we need to extract the token
 const jwt = require("jsonwebtoken");
 const signature = 'iwillwinthehackathon100percent';
+const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
 module.exports = (req,res,next)=>{

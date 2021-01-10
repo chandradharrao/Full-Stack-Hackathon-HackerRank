@@ -16,6 +16,7 @@ function Menu(){
     }
 
     //change to checkbox from select/option
+    //refer to this for UI: https://www.youtube.com/watch?v=oy9TEteCXdU&ab_channel=TheNetNinja
     return(
         <div>
             <input type = "button" onClick={onClickHandler}/>

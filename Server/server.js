@@ -18,6 +18,7 @@ app.use(express.json());
 require('./Database/Models/user');
 
 app.use(require('./Routes/auth'));
+app.use(require("./Routes/menu"));
 
 app.listen(PORT,()=>{
     console.log("Listening to " + PORT + ".....");
