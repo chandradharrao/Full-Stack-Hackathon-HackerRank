@@ -11,7 +11,7 @@ function App() {
       <Switch>
         <Route path = "/signin" component={SignIn}/>
         <Route path = '/signup' component={RegForm}/>
-        <Route path = '/successpage/:id' component={SuccessPage}/>
+        <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
       </Switch>
     </BrowserRouter>
   );

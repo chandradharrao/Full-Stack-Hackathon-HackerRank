@@ -34,7 +34,8 @@ router.post("/signup",(req,res)=>{
                     email,
                     imgURL,
                     regID,
-                    password:hashedPassword
+                    password:hashedPassword,
+                    regDate:new Date()
                 });
                 newUser.save().then((x)=>{
                     res.status(201).json({message:"Successful registration,redirecting to login page...",regID:regID,note:"username is your registration id and password is your employee id",success:true})
@@ -54,7 +55,6 @@ router.post('/signin',(req,res)=>{
     User.findOne({regID:username}).then(dbUser=>{
         //if user not present
         if(!dbUser){
-            //redirect to sign up page
             res.status(422).json({error:"Incorrect email or password"})
         }else{
             //compare password of user present in db and user logging in

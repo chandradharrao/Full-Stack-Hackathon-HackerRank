@@ -75,42 +75,47 @@ function RegForm(){
             //res will contain an user id generated at server,send this to successpage url and query the data base for user with this id and display his data
             const id = data.regID;
             console.log(data.message)
-            history.push('/successpage/' + id);
+            setTimeout(() => {
+                history.push('/successpage/' + id + "/" + empID);
+            }, 2500);
         }).catch((err)=>{
             console.error(err);
         })
     }
 
     return(
-        <form>
-            <h1>Registration Form</h1>
-            <div className="input-field">
-                <input type="text" value={name} onChange={(event)=>onChangeHandler(event)} id="name-input"/>
-            </div>
-            <div className="input-field">
-                <input type="text" value={orgName} onChange={(event)=>onChangeHandler(event)} id="org-input"/>
-            </div>
-            <div className="input-field">
-                <input type="text" value={empID} onChange={(event)=>onChangeHandler(event)} id="empid-input"/>
-            </div>
-            <div className="input-field">
-                
-            </div>
-            <div className="input-field">
-                <input type="text" value={mobNo} onChange={(event)=>onChangeHandler(event)} id="mobno-input"/>
-            </div>
-            <div className="input-field">
-                <input type="text" value={email} onChange={(event)=>onChangeHandler(event)} id="email-input"/>
-            </div>
-            <div className="btn">
-                <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
-            </div>
-            <p></p>
-            <div class="waves-effect waves-light btn" onClick={onClickHandler}>Upload form</div>
-            <p></p>
-            <Link to="/signin">Already Have an account?</Link>
-            <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
-        </form>
+        <div className="container">
+            <form>
+                <h1>Registration Form</h1>
+                <div className="input-field">
+                    <input type="text" value={name} onChange={(event)=>onChangeHandler(event)} id="name-input"/>
+                </div>
+                <div className="input-field">
+                    <input type="text" value={orgName} onChange={(event)=>onChangeHandler(event)} id="org-input"/>
+                </div>
+                <div className="input-field">
+                    <input type="text" value={empID} onChange={(event)=>onChangeHandler(event)} id="empid-input"/>
+                </div>
+                <div className="input-field">
+                    
+                </div>
+                <div className="input-field">
+                    <input type="text" value={mobNo} onChange={(event)=>onChangeHandler(event)} id="mobno-input"/>
+                </div>
+                <div className="input-field">
+                    <input type="text" value={email} onChange={(event)=>onChangeHandler(event)} id="email-input"/>
+                </div>
+                <div className="btn">
+                    <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
+                </div>
+                <p></p>
+                <div class="waves-effect waves-light btn" onClick={onClickHandler}>Upload form</div>
+                <p></p>
+                <Link to="/signin">Already Have an account?</Link>
+                <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
+            </form>
+        </div>
+
     )
 }
 

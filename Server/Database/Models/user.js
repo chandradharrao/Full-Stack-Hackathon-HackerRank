@@ -32,8 +32,13 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    regDate:{
+        type:Date,
+        required:true
     }
 });
 
 //user collection in database
 mongoose.model("User",userSchema);
+

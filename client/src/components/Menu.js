@@ -22,12 +22,12 @@ function Menu(){
             <form>
                 <label for="menu">Choose Items</label>
                 <select name="menu" id="menu" onChange={}>
-                    {menu.length === 0?<p>No menu today</p>:menu.map((item,id)=>{
+                    {menu.length === 0?<div className="progress"><div class="indeterminate"></div></div>:menu.map((item,id)=>{
                             return <option value={`${menu[id].name}&${menu[id].price}`} key={id}>{item[id].name} : {item[id].price}</option>
                         })}
                 </select>
                 <br></br>
-                <input type="button" onClick={onSubmitHandler}>Book order</input>
+                <input type="button" onClick={onSubmitHandler}>Order Now</input>
             </form>
         </div> 
     )
