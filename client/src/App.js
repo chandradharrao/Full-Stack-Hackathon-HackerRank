@@ -3,6 +3,8 @@ import RegForm from './components/RegForm';
 import Navbar from './components/Navbar';
 import SuccessPage from './components/SuccessPage';
 import SignIn from './components/SignIn';
+import Menu from "./components/Menu";
+import Payment from "./components/Payment";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path = "/signin" component={SignIn}/>
         <Route path = '/signup' component={RegForm}/>
         <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
+        <Route path = "/menu" component={Menu}/>
+        <Route path = "/payment" component={Payment}/>
       </Switch>
     </BrowserRouter>
   );

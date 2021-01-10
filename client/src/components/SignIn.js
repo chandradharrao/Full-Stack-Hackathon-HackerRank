@@ -4,7 +4,6 @@ import {Link,useHistory} from 'react-router-dom'
 function SignIn(){
     const [username, setUsername] = useState("Enter Username");
     const [password, setPassword] = useState("Enter password");
-    const URL = "end point for posting data";
     const history = useHistory();
 
     function onChangeHandler(event) {
@@ -25,29 +24,39 @@ function SignIn(){
                 password
             })
         };
-        fetch(URL,reqOptions).then(res=>res.json()).then(data=>{
-            console.log("Made post request")
+        fetch("/sigin",reqOptions).then(res=>res.json()).then((data)=>{
+            if(data.success){
+                //make a toast with success massage
+                //store token and user info present in response in local storage
+                localStorage.setItem("jwt",data.token);
+                localStorage.setItem("user",JSON.stringify(data.user));
+                //navigate user to menu
+                history.push('/menu');
+            }else{
+                //make toast with failure message
+                console.log(data.error + " : " + data.message);
+            }
         });
-        //navigate user to menu
-        history.push('/menu');
     }
 
     return(
         <div>
             <div>
-                <h2>Login</h2>
-                <form>
-                    <div className="input-field">
-                        <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username"/>
-                    </div>
-                    <div className="input-field">
-                        <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password"/>
-                    </div>
-                    <div className="input-field">
-                        <button className="btn" onClick={onClickHandler}>SignIn</button>
-                    </div>
-                    <Link to="/registrationform">Dont have an account?</Link>
-                </form>
+                <div className="container">
+                    <h2>Login</h2>
+                    <form>
+                        <div className="input-field">
+                            <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username"/>
+                        </div>
+                        <div className="input-field">
+                            <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password"/>
+                        </div>
+                        <div className="input-field">
+                            <button className="btn" onClick={onClickHandler}>SignIn</button>
+                        </div>
+                        <Link to="/registrationform">Dont have an account?</Link>
+                    </form>
+                </div>
             </div>
         </div>
     )

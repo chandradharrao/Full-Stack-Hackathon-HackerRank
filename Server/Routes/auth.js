@@ -11,18 +11,27 @@ const jwt = require("jsonwebtoken");
 const signature = 'iwillwinthehackathon100percent';
 
 router.post("/signup",(req,res)=>{
+    console.log("Signup route...");
+
     //destructure from body
     const {name,orgName,empID,mobNo,email,imgURL} = req.body;
+    console.log("this is the req.body " + req.body);
 
+    console.log("Searching in db....");
     //search in db collection
     User.findOne({empID:empID}).then((dbUser)=>{
         //if found
         if(dbUser){
-            res.status(500).json({error:"User already exists",message:"Create new account"})
+            console.log("user already in db :(");
+            res.json({error:"User already exists in db",message:"Create new account"})
         }
         else{
+            console.log("Creating user.....")
             //gen uid => username
             const regID = new Date().valueOf().toString();
+            console.log("regid created is " + regID);
+
+            console.log("Creating password...")
             //hash password
             bcrypt.hash(empID,12).then((hashedPassword)=>{
                 //save data to db
@@ -39,10 +48,11 @@ router.post("/signup",(req,res)=>{
                     regDate:new Date()
                 });
                 newUser.save().then((x)=>{
-                    res.status(201).json({message:"Successful registration",note:"redirecting to login page...",regID:regID,success:true})
+                    console.log("New user created!")
+                    res.json({message:"Successful registration",note:"redirecting to login page...",regID:regID,success:true})
                 }).catch(err=>{
-                    console.log(err);
-                    res.status(401).json({success:false,error:"Unable to register",message:"try again.."})
+                    console.log("unable to create new user : " + "because of the error " + err);
+                    res.json({success:false,error:"Unable to register",message:"try again.."})
                 })
             }).catch(err=>{
                 //dev error
@@ -74,11 +84,11 @@ router.post('/signin',(req,res)=>{
                         }
                         else{
                             token = temp;
-                            res.json({message:"Successfully signed in",token})
+                            res.json({message:"Successfully signed in",token,success:true})
                         }
                     })
                 }else{
-                    res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password"})
+                    res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password",success:false})
                 }
             }).catch(err=>{console.log(err)})
         }

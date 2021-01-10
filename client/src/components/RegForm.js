@@ -1,10 +1,6 @@
 import {useState} from 'react';
 import {useHistory,Link} from 'react-router-dom'
-//import axios from 'axios';
 import PreviewForm from './PreviewForm';
-
-//we need to make sure we store the image in cloudinary and supply the url and not the image itself
-//change code to first upload to cloudinary and then use the url
 
 function RegForm(){
     var history = useHistory();
@@ -15,9 +11,83 @@ function RegForm(){
     const [email,setEmail] = useState("Enter your Email");
     const [img,setImg] = useState(".../..public/idCard.png");
     //this state variable will hold the temp url of the image uploaded
-    const [localImgUrl,setLocalImgUrl] = useState(".../..public/idCard.png");
+    const [localImgUrl,setLocalImgUrl] = useState("./idCard.png");
+    //const [cloudImgUrl,setCloudImgUrl] = useState("");
 
-    const URL = 'end-point created in the server';
+    function cloudinaryUploadPromise(){
+        return new Promise((resolve,reject)=>{
+            //for file upload we need to use form data
+            console.log("Uploading to cloudinary....")
+            const fd = new FormData();
+            fd.append("file",img);
+            fd.append("upload_preset","officeCafeteria");
+            fd.append("cloud_name","chandracloudinarystorage123");
+            fetch("https://api.cloudinary.com/v1_1/chandracloudinarystorage123/image/upload",{
+                method:"POST",
+                body:fd
+            }).then(res=>res.json()).then(data=>{
+                console.log(data);
+                resolve(data.url);
+            }).catch(err=>{
+                console.log(err);
+                reject(err);
+            });
+        })
+    }
+
+    function createFinalForm(){
+        let imgURL= cloudinaryUploadPromise();
+        imgURL.then(
+            (value)=>{
+                //imgURL is the url of the image after uploading to cloudinary
+                console.log("value : " + value)
+                let data = {name:null,orgName:null,empid:null,mobno:null,email:null,imgURL:null};
+                data.name = name;
+                data.orgName = orgName;
+                data.email = email;
+                data.empID = empID;
+                data.mobNo = mobNo;
+                data.imgURL = value;
+
+                fetch('/signup',{
+                    method:"POST",
+                    headers:{
+                        'Accept': 'application/json',
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify(data)
+                    }).then((res)=>{
+                        /*console.log(res)
+                        console.log("res => " + res + " has type " + typeof res);
+                        console.log("Before converting to json,id is " + res.regID)*/
+                        return res.json();
+                    }).then((serverData)=>{
+                        //console.log(serverData);
+                        //console.log("Server sent data with id "+ serverData.regID)
+                        if(serverData.success){
+                            //console.log("server Db created a user....");
+
+                            //grab id
+                            const id = serverData.regID;
+                            console.log("id from server " + id)
+
+                            //create a toast for success
+                            setTimeout(() => {
+                                history.push('/successpage/' + id + "/" + empID);
+                            }, 2500);
+                        }else{
+                            //create a toast for failure
+                            console.log("Server sent error " + serverData.error)
+                        }
+                    }).catch((err)=>{
+                        console.error(err);
+                    })
+                },
+            (error)=>{
+                console.log(error);
+            }
+        )
+    }
 
     function onChangeHandler(event){
         //validate the form data using regex
@@ -38,49 +108,12 @@ function RegForm(){
                 setEmail(event.target.value);
                 break;
             case "img-input":
-                setImg({file:event.target.files[0],name:event.target.files[0].name});
-                setLocalImgUrl(URL.createObjectURL(event.target.files[0]))
+                setImg(event.target.files[0]);
+                setLocalImgUrl(window.URL.createObjectURL(event.target.files[0]))
                 break;
             default:
                 break;
         }
-    }
-
-    function onClickHandler(){
-        //post object and not form data
-        //img is the url of the image after uploading to cloudinary
-        let fd = {name:null,orgName:null,empid:null,mobno:null,email:null,imgURL:null};
-        fd.name = name;
-        fd.orgName = orgName;
-        fd.email = email;
-        fd.empid = empID;
-        fd.mobno = mobNo;
-        fd.imgURL = img;
-        fd = JSON.stringify(fd);
-        /*axios.post(URL,fd,{
-            //display in ui
-            //attach event handler for the evnt onUploadProgress by xmlhttp req
-            onUploadProgress:(ProgressEvent)=>{
-                console.log(`Progress : ${Math.round((ProgressEvent.loaded/ProgressEvent.total)*100)} %`)
-            }
-        })*/
-        fetch('/upload',{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                "authorization":""
-            },
-            body:fd
-        }).then(res=>res.json).then((data)=>{
-            //res will contain an user id generated at server,send this to successpage url and query the data base for user with this id and display his data
-            const id = data.regID;
-            console.log(data.message)
-            setTimeout(() => {
-                history.push('/successpage/' + id + "/" + empID);
-            }, 2500);
-        }).catch((err)=>{
-            console.error(err);
-        })
     }
 
     return(
@@ -109,7 +142,7 @@ function RegForm(){
                     <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
                 </div>
                 <p></p>
-                <div class="waves-effect waves-light btn" onClick={onClickHandler}>Upload form</div>
+                <div className="waves-effect waves-light btn" onClick={createFinalForm}>Upload form</div>
                 <p></p>
                 <Link to="/signin">Already Have an account?</Link>
                 <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
@@ -120,15 +153,3 @@ function RegForm(){
 }
 
 export default RegForm;
-
-/*<input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>*/
-/*<div className="file-field input-field">
-                <div class="btn">
-                    <span>ID Card Image
-                        
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text"/>
-                        </div>
-                    </span>
-                </div>
-            </div>*/
