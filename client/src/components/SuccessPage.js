@@ -17,13 +17,13 @@ function SuccessPage(){
             <div className="container">
             <h2 className="header">Successful Registration</h2>
             <div className="card horizontal"></div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <ul class="collection with-header">
+                <div className="card-stacked">
+                    <div className="card-content">
+                        <ul className="collection with-header">
                             <li className="collection-item">Your Username : {id}</li>
                             <li className="collection-item">Your Password : {empid}</li>
                         </ul>
-                        <Link to="/signin" class="waves-effect waves-light btn">Sign In</Link>
+                        <Link to="/signin" className="waves-effect waves-light btn">Sign In</Link>
                     </div>
                 </div>
             </div>

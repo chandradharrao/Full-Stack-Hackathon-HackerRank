@@ -5,6 +5,7 @@ import SuccessPage from './components/SuccessPage';
 import SignIn from './components/SignIn';
 import Menu from "./components/Menu";
 import Payment from "./components/Payment";
+import Home from './components/Home';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
         <Route path = "/menu" component={Menu}/>
         <Route path = "/payment" component={Payment}/>
+        <Route path = "/" component = {Home}/>
       </Switch>
     </BrowserRouter>
   );
