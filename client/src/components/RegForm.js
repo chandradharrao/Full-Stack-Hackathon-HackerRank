@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react';
 import {useHistory,Link} from 'react-router-dom'
 import PreviewForm from './PreviewForm';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure();
 
 function RegForm(){
     var history = useHistory();
@@ -79,13 +82,16 @@ function RegForm(){
                                 //console.log("id from server " + id)
 
                                 //ToDo : create a toast for success
+                                toast.success(serverData.message)
+
                                 setTimeout(() => {
                                     //navigate the user manually to the successpage
                                     history.push('/successpage/' + id + "/" + empID);
                                 }, 2500);
                             }else{
                                 //ToDo : create a toast for failure
-                                console.log("Server sent error " + serverData.error)
+                                toast.error(serverData.message);
+                                //console.log("Server sent error " + serverData.error)
                             }
                         }).catch((err)=>{
                             console.error(err);
@@ -122,7 +128,8 @@ function RegForm(){
                             //console.log("The error " + theErr)
                             //use toast instead in final touches
                             //create a error div
-                            temp.push(<div key={i++} style={{color:'red'}}>{theErr}</div>)
+                            toast.error(theErr);
+                            temp.push(<h6 key={i++} style={{color:'red'}}>{theErr}</h6>)
                         }
                     }
                 }
@@ -325,7 +332,6 @@ function RegForm(){
             {load}
             <form>
                 <h1>Registration Form</h1>
-                {errMsgs}
                 <div className="input-field">
                     <input type="text" value={name} placeholder="Name" onChange={(event)=>onChangeHandler(event)} id="name-input"/>
                 </div>

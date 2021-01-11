@@ -49,7 +49,7 @@ router.post("/signup",(req,res)=>{
                 });
                 newUser.save().then((x)=>{
                     console.log("New user created!")
-                    res.json({message:"Successful registration",note:"redirecting to login page...",regID:regID,success:true})
+                    res.json({message:"Successful Registration",note:"redirecting to login page...",regID:regID,success:true})
                 }).catch(err=>{
                     console.log("unable to create new user : " + "because of the error " + err);
                     res.json({success:false,error:"Unable to register",message:"try again.."})
