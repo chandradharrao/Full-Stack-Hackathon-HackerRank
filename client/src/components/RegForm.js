@@ -4,11 +4,11 @@ import PreviewForm from './PreviewForm';
 
 function RegForm(){
     var history = useHistory();
-    const [name,setName] = useState("Enter your full name");
-    const [orgName,setOrgName] = useState("Enter your Organization Name");
-    const [empID,setEmpID] = useState("Enter your employee ID");
-    const [mobNo,setMobNo] = useState("Enter your mobile Number");
-    const [email,setEmail] = useState("Enter your Email");
+    const [name,setName] = useState("");
+    const [orgName,setOrgName] = useState("");
+    const [empID,setEmpID] = useState("");
+    const [mobNo,setMobNo] = useState("");
+    const [email,setEmail] = useState("");
     const [img,setImg] = useState(".../..public/idCard.png");
     //this state variable will hold the temp url of the image uploaded
     const [localImgUrl,setLocalImgUrl] = useState("./idCard.png");
@@ -121,23 +121,24 @@ function RegForm(){
             <form>
                 <h1>Registration Form</h1>
                 <div className="input-field">
-                    <input type="text" value={name} onChange={(event)=>onChangeHandler(event)} id="name-input"/>
+                    <input type="text" value={name} placeholder="Name" onChange={(event)=>onChangeHandler(event)} id="name-input"/>
                 </div>
                 <div className="input-field">
-                    <input type="text" value={orgName} onChange={(event)=>onChangeHandler(event)} id="org-input"/>
+                    <input type="text" value={orgName} placeholder="Organization Name" onChange={(event)=>onChangeHandler(event)} id="org-input"/>
                 </div>
                 <div className="input-field">
-                    <input type="text" value={empID} onChange={(event)=>onChangeHandler(event)} id="empid-input"/>
+                    <input type="text" value={empID} placeholder="Employee ID" onChange={(event)=>onChangeHandler(event)} id="empid-input"/>
                 </div>
                 <div className="input-field">
                     
                 </div>
                 <div className="input-field">
-                    <input type="text" value={mobNo} onChange={(event)=>onChangeHandler(event)} id="mobno-input"/>
+                    <input type="text" value={mobNo} placeholder="Mobile Number" onChange={(event)=>onChangeHandler(event)} id="mobno-input"/>
                 </div>
                 <div className="input-field">
-                    <input type="text" value={email} onChange={(event)=>onChangeHandler(event)} id="email-input"/>
+                    <input type="text" value={email} placeholder="Email" onChange={(event)=>onChangeHandler(event)} id="email-input"/>
                 </div>
+                <div>Upload ID Card</div>
                 <div className="btn">
                     <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
                 </div>

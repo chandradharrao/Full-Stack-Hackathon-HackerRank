@@ -2,8 +2,8 @@ import {useState} from 'react';
 import {Link,useHistory} from 'react-router-dom'
 
 function SignIn(){
-    const [username, setUsername] = useState("Enter Username");
-    const [password, setPassword] = useState("Enter password");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const history = useHistory();
 
     function onChangeHandler(event) {
@@ -46,10 +46,10 @@ function SignIn(){
                     <h2>Login</h2>
                     <form>
                         <div className="input-field">
-                            <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username"/>
+                            <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Username"/>
                         </div>
                         <div className="input-field">
-                            <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password"/>
+                            <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password" placeholder="Password"/>
                         </div>
                         <div className="input-field">
                             <button className="btn" onClick={onClickHandler}>SignIn</button>

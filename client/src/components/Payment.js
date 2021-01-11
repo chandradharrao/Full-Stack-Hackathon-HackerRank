@@ -9,10 +9,10 @@ function PaymentMode(){
 
                         <h1 className="card-title" style={{fontWeight:"bold"}}>Payment Methods : </h1>
                         <br></br>
-                        <div className="waves-effect waves-light btn"><i className="material-icons left"></i>Google Pay</div>
+                        <div className="waves-effect waves-light btn"><i className="material-icons left">android</i>Google Pay</div>
                         <br></br>
                         <br></br>
-                        <div className="waves-effect waves-light btn"><i className="material-icons left"></i>Masterpass</div>
+                        <div className="waves-effect waves-light btn"><i className="material-icons left">payment</i>Masterpass</div>
                         <br></br>
                         <br></br>
                         <span className="card-title" style={{fontWeight:"bold"}}>Enter Card Details Below : </span>
