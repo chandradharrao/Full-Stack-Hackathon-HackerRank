@@ -31,13 +31,20 @@ function RegForm(){
     //state to store loading element
     const [load,setLoad] = useState(null);
 
+    //useEffect triggered when user clicks on submit button 
+    //setStates are async and take a while to perform
     useEffect(()=>{
-        if(valid!=="" && valid){//true
+        //check if all inputs are valid
+        if(valid!=="" && valid){//all input fields are correct
+            //promise 
             let imgURL= cloudinaryUploadPromise();
+            //after execution and getting result of promise that creates image url
             imgURL.then(
                 (value)=>{
                     //imgURL is the url of the image after uploading to cloudinary
-                    console.log("value : " + value)
+                    //console.log("value : " + value)
+
+                    //create the form data,but no need to use form data since its not a file upload
                     let data = {name:null,orgName:null,empid:null,mobno:null,email:null,imgURL:null};
                     data.name = name;
                     data.orgName = orgName;
@@ -45,18 +52,21 @@ function RegForm(){
                     data.empID = empID;
                     data.mobNo = mobNo;
                     data.imgURL = value;
-
+                    
+                    //post data to server
                     fetch('/signup',{
                         method:"POST",
                         headers:{
                             'Accept': 'application/json',
                             "Content-Type":"application/json"
+                            //add authorization
                         },
                         body:JSON.stringify(data)
                         }).then((res)=>{
                             /*console.log(res)
                             console.log("res => " + res + " has type " + typeof res);
                             console.log("Before converting to json,id is " + res.regID)*/
+                            //when using curly braces we need to return or else no need to return
                             return res.json();
                         }).then((serverData)=>{
                             //console.log(serverData);
@@ -64,16 +74,17 @@ function RegForm(){
                             if(serverData.success){
                                 //console.log("server Db created a user....");
 
-                                //grab id
+                                //grab regestration id of the user regestered at the database successfully
                                 const id = serverData.regID;
-                                console.log("id from server " + id)
+                                //console.log("id from server " + id)
 
-                                //create a toast for success
+                                //ToDo : create a toast for success
                                 setTimeout(() => {
+                                    //navigate the user manually to the successpage
                                     history.push('/successpage/' + id + "/" + empID);
                                 }, 2500);
                             }else{
-                                //create a toast for failure
+                                //ToDo : create a toast for failure
                                 console.log("Server sent error " + serverData.error)
                             }
                         }).catch((err)=>{
@@ -84,45 +95,55 @@ function RegForm(){
                     console.log(error);
                 }
             )
-        }else if(valid === false){ //false
+        }else if(valid === false){ //if input fields are not valid ie valid state is set to false
             let temp = [];
+            //var to give unique key value to react elements
             let i =0;
-            console.log("FormErrors state : " + JSON.stringify(formErrors));
+            //console.log("FormErrors state : " + JSON.stringify(formErrors));
+            //iterate through FormErrors object
             for(const property in formErrors){
                 //console.log("formErrors[property]" + JSON.stringify(formErrors[property]));
+
+                //if no form error for a particular iput field,do nothing
                 if(formErrors[property] === {}){
 
                 }else{
+                    //capture the error name and error message
                     let errObj = formErrors[property];
                     //console.log("errObj" + JSON.stringify(errObj));
                     if(errObj === {}){
 
                     }else{
+                        //iterate through the particular error of the input field
                         for(const errProp in errObj){
                             //console.log("error property " + errProp)
+                            //capture the error message
                             let theErr = errObj[errProp];
-                            console.log("The error " + theErr)
+                            //console.log("The error " + theErr)
                             //use toast instead in final touches
+                            //create a error div
                             temp.push(<div key={i++} style={{color:'red'}}>{theErr}</div>)
                         }
                     }
                 }
             }
-            console.log("Setting error message...")
+            ///console.log("Setting error message...")
+            //set all the errors captured
             setErrMsgs(temp);
         }
-        
+        //dependent on the user click
     },[comp])
 
     function cloudinaryUploadPromise(){
+        //return a new Promise since it takes time to complete
         return new Promise((resolve,reject)=>{
-            //for file upload we need to use form data
+            //for file upload (image here) we need to use form data
             console.log("Uploading to cloudinary....")
             const fd = new FormData();
             fd.append("file",img);
             fd.append("upload_preset","officeCafeteria");
             fd.append("cloud_name","chandracloudinarystorage123");
-            //add loading bar
+            //loading bar
             setLoad(<div className="progress">
                         <div className="indeterminate"></div>
                     </div>)
@@ -140,6 +161,7 @@ function RegForm(){
     }
 
     function formValidation(){
+        //temp variable to store different errors associated with each input field
         let temp = {
             name:{},
             orgName:{},
@@ -148,18 +170,23 @@ function RegForm(){
             email:{},
             img:{}
         };
+
+        //default image for id card
+        const defaultIMG = ".../..public/idCard.png"
         //clear error messages
         setErrMsgs("");
 
-        //flag to detect even event if single error occured 
+        //flag to detect occurence of atleast one error in form fields
         let isValid = true;
         
-        console.log("img ....... : " + img);
+        //console.log("img ....... : " + img);
         //check for empty fields
-        if(name === "" || orgName === "" || empID === "" || mobNo === "" || email === "" || img === ".../..public/idCard.png"){
-            console.log("Some empty fields..");
+        if(name === "" || orgName === "" || empID === "" || mobNo === "" || email === "" || img === defaultIMG){
+            //console.log("Some empty fields..");
             isValid = false;
-            let uploaded = {
+
+            //this will store the input form states in key value pair
+            let copyData = {
                 name,
                 orgName,
                 empID,
@@ -167,18 +194,21 @@ function RegForm(){
                 email,
                 img
             };
-            for(const prop in temp){
-                console.log(typeof prop)
-                if(uploaded[prop] === "" || uploaded[prop] === ".../..public/idCard.png"){
+
+            //check for atleast one empty input form field
+            for(const prop in copyData){
+                //console.log(typeof prop)
+                if(copyData[prop] === "" || copyData[prop] === defaultIMG){
+                    //attach error to emptyField property
                     temp[prop].emptyField = `${prop} is required`;
                 }
             }
-            console.log("temp var " + JSON.stringify(temp));
-            //setFormErrors((prevState)=>{console.log(prevState);
-                //return {...prevState,temp}});
-                setFormErrors(temp)
-            console.log("FormErrors var after setting : " + JSON.stringify(formErrors))
+            //console.log("temp var " + JSON.stringify(temp));
+            //update the FormErrors state
+            setFormErrors(temp)
+            //console.log("FormErrors var after setting : " + JSON.stringify(formErrors))
             //return isValid;
+            //set the state representing weather form inputs are valid
             setValid(isValid);
             setComp(comp + "1");
             return;
@@ -258,6 +288,7 @@ function RegForm(){
         //set isValid;
         console.log("setting valid..")
         setValid(isValid);
+        //state that changes when user clicks submit button everytime so that useEffect kicks in.This is because setState is async and doesnt happen instantaneously,hence we need to use useEffect to trigger submission of form if all input fields are valid
         setComp(comp + "1");
     }
 
