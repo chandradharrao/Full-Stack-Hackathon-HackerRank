@@ -18,3 +18,16 @@ function Navbar(){
 }
 
 export default Navbar;
+
+/*const [logo,setLogo] = useState(localStorage.getItem("jwt"));
+  const [signin,setSignin] = useState(localStorage.getItem("jwt"));
+  const [reg,setReg] = useState(localStorage.getItem("jwt"));
+  const [home,setHome] = useState(localStorage.getItem("jwt"));
+  const [logout,setLogout] = useState(localStorage.getItem(""));
+
+  if(localStorage.getItem("jwt") === null){
+    setLogo("/signin");
+    setSignin("/signin");
+    setReg("/signin");
+    setHome("/home")
+  }*/

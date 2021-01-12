@@ -62,7 +62,8 @@ router.post("/signup",(req,res)=>{
     })
 })
 
-router.post('/signin',(req,res)=>{
+router.post('/login',(req,res)=>{
+    console.log("Signing in route...");
     const {username,password} = req.body;
     console.log(req.body);
 
@@ -75,6 +76,7 @@ router.post('/signin',(req,res)=>{
             //compare password of user present in db and user logging in
             bcrypt.compare(password,dbUser.password).then((match)=>{
                 if(match){
+                    console.log("Matched password and username")
                     //attach user with token so thathe can access protected resource like menu
                     let token = null;
                     jwt.sign({signedRegID:dbUser.regID},signature,(err,temp)=>{
@@ -83,8 +85,10 @@ router.post('/signin',(req,res)=>{
                             console.log(err);
                         }
                         else{
+                            console.log("Successful sign in...")
                             token = temp;
-                            res.json({message:"Successfully signed in",token,success:true})
+                            //console.log(token);
+                            res.json({message:"Successfully Signed In",token:token,success:true})
                         }
                     })
                 }else{

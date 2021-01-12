@@ -223,7 +223,7 @@ function RegForm(){
 
         //remove white spaces and check for length of name
         if(name.trim().length < 5){
-            console.log("Name should be atleast 5 characters long");
+            //console.log("Name should be atleast 5 characters long");
             temp.name.shortName = "Name should be atleast 5 characters long";
             isValid = false;
         }
@@ -232,7 +232,7 @@ function RegForm(){
         for(let i = 0;i<name.length;i++){
             //if not (not a number) === a number
             if(!isNaN(name[i])){
-                console.log("Name should not contain numbers")
+                //console.log("Name should not contain numbers")
                 temp.name.nameNumber = "Name should not contain numbers";
                 isValid = false;
                 break;
@@ -243,7 +243,7 @@ function RegForm(){
         for(let i = 0;i<mobNo.length;i++){
             //if not a number === a letter
             if(isNaN(mobNo[i])){
-                console.log("Mobile Number should not have alphabets")
+                //console.log("Mobile Number should not have alphabets")
                 temp.mobNo.mobAlpha = "Mobile Number should not have alphabets"
                 isValid = false;
                 break;
@@ -273,14 +273,14 @@ function RegForm(){
         }
         if(!dot){
             isValid = false;
-            console.log("Setting.....")
+            //console.log("Setting.....")
             temp.email.dotErr = "Email should contain . and string after that";
         }
 
         //check for format of image uploaded
         let imgNameArr =  img.name.split(".");
         let fileType = imgNameArr[imgNameArr.length - 1];
-        console.log("File type " + fileType);
+        //console.log("File type " + fileType);
         if(fileType === "png" || fileType === "jpeg" || fileType === 'jpg'){
 
         }else{
@@ -289,11 +289,11 @@ function RegForm(){
         }
 
         //set the formErrors state
-        console.log("Temp variable : " + JSON.stringify(temp));
+        //console.log("Temp variable : " + JSON.stringify(temp));
         setFormErrors(temp);
 
         //set isValid;
-        console.log("setting valid..")
+        //console.log("setting valid..")
         setValid(isValid);
         //state that changes when user clicks submit button everytime so that useEffect kicks in.This is because setState is async and doesnt happen instantaneously,hence we need to use useEffect to trigger submission of form if all input fields are valid
         setComp(comp + "1");
