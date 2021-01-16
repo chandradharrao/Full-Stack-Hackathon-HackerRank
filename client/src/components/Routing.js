@@ -3,7 +3,6 @@ import {Route,Switch,useHistory} from 'react-router-dom';
 import Menu from './Menu';
 import SuccessPage from './SuccessPage'
 import Payment from "./Payment";
-import Home from "./Home";
 import {UserDetailsContext} from "../App"
 import SignIn from './SignIn';
 import RegForm from './RegForm';
@@ -44,7 +43,6 @@ function Routing(){
             <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
             <Route path = "/menu" component={Menu}/>
             <Route path = "/payment" component={Payment}/>
-            <Route path = "/" component = {Home}/>
         </Switch>
     )
 }
