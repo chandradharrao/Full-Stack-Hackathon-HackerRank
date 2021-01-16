@@ -1,25 +1,24 @@
-import {BrowserRouter,Route,Switch} from 'react-router-dom' 
-import RegForm from './components/RegForm';
+import {BrowserRouter} from 'react-router-dom';
 import Navbar from './components/Navbar';
-import SuccessPage from './components/SuccessPage';
-import SignIn from './components/SignIn';
-import Menu from "./components/Menu";
-import Payment from "./components/Payment";
-import Home from './components/Home';
+import Routing from './components/Routing';
+//import the reducer function and the state
+import {UserDetailsState,UserDetailsReducer} from "./reducers/userDetailsReducer"
+import {createContext,useReducer} from 'react';
+
+//create context(returns an obj with 2 values : consumer and provider)
+//context will provide consumers access to state and dispatch function
+export const UserDetailsContext = createContext()
 
 function App() {
+  //grab the sipatch function and state to be passed an value to consumers
+  const [state,dispatch] = useReducer(UserDetailsReducer,UserDetailsState);
   return (
-    <BrowserRouter>
-      <Navbar/>
-      <Switch>
-        <Route path = "/signin" component={SignIn}/>
-        <Route path = '/signup' component={RegForm}/>
-        <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
-        <Route path = "/menu" component={Menu}/>
-        <Route path = "/payment" component={Payment}/>
-        <Route path = "/" component = {Home}/>
-      </Switch>
-    </BrowserRouter>
+    <UserDetailsContext.Provider value={{state,dispatch}}>
+      <BrowserRouter>
+        <Navbar/>
+        <Routing/>
+      </BrowserRouter>
+    </UserDetailsContext.Provider>
   );
 }
 

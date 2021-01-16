@@ -49,10 +49,10 @@ router.post("/signup",(req,res)=>{
                 });
                 newUser.save().then((x)=>{
                     console.log("New user created!")
-                    res.json({message:"Successful Registration",note:"redirecting to login page...",regID:regID,success:true})
+                    res.json({message:"Successful Registration",note:"redirecting to login page...",regID:regID,success:true,user:x})
                 }).catch(err=>{
                     console.log("unable to create new user : " + "because of the error " + err);
-                    res.json({success:false,error:"Unable to register",message:"try again.."})
+                    res.json({success:false,error:"Unable to register",message:"try again..",user:null})
                 })
             }).catch(err=>{
                 //dev error
@@ -77,7 +77,7 @@ router.post('/login',(req,res)=>{
             bcrypt.compare(password,dbUser.password).then((match)=>{
                 if(match){
                     console.log("Matched password and username")
-                    //attach user with token so thathe can access protected resource like menu
+                    //attach user with token so tha they can access protected resource like menu
                     let token = null;
                     jwt.sign({signedRegID:dbUser.regID},signature,(err,temp)=>{
                         if(err){
@@ -87,12 +87,14 @@ router.post('/login',(req,res)=>{
                         else{
                             console.log("Successful sign in...")
                             token = temp;
+                            //attach user data to req
+                            req.user = dbUser;
                             //console.log(token);
-                            res.json({message:"Successfully Signed In",token:token,success:true})
+                            res.json({message:"Successfully Signed In",token:token,success:true,user : req.user})
                         }
                     })
                 }else{
-                    res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password",success:false})
+                    res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password",success:false,user:null})
                 }
             }).catch(err=>{console.log(err)})
         }
