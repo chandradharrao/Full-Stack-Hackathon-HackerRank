@@ -10,7 +10,7 @@ function SignIn(){
     const [password, setPassword] = useState("");
     const [load,setLoad] = useState("");
     const history = useHistory();
-    //destructure the state and dispatch function from context provider
+    //destructure the state and dispatch function from context provider's value
     const {state,dispatch} = useContext(UserDetailsContext)
 
     function onChangeHandler(event) {
@@ -54,6 +54,7 @@ function SignIn(){
                 localStorage.setItem("user",JSON.stringify(data.user));
                 console.log("Successfull login.....")
 
+                //only dispatch is allowed to change state by dispatching action
                 //store user data in redux state
                 dispatch({type:"SET_USER_DETAILS",payload:data.user})
                 

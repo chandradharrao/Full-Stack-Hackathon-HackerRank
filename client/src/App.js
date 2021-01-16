@@ -10,8 +10,9 @@ import {createContext,useReducer} from 'react';
 export const UserDetailsContext = createContext()
 
 function App() {
-  //grab the sipatch function and state to be passed an value to consumers
+  //grab the dispatch method and curr state to be passed on as value to consumers
   const [state,dispatch] = useReducer(UserDetailsReducer,UserDetailsState);
+
   return (
     <UserDetailsContext.Provider value={{state,dispatch}}>
       <BrowserRouter>
