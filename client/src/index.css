@@ -12,20 +12,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.container{
-  margin-left: 5vw;
-  font-style: italic;
-}
 
-.navbar{
-  margin: 2vw;
-}
 
 .registration{
   background-color: rgb(138, 135, 135);
   margin: 2vw;
   border-radius: 20px;
-  height: 70vh;
+  height: auto;
+  padding-bottom: 5vh;
 }
 
 .container-login{
@@ -47,7 +41,7 @@ code {
 .login-form{
   background-color: white;
   border-radius: 20px;
-  height: 30vh;
+  height: auto;
   padding: 1%;
 }
 
@@ -58,14 +52,19 @@ code {
 }
 
 
-.container h2 {
+.menu-heading{
   color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+h2{
+  text-align: center;
 }
 
 .menu{
-  width: 90vw;
+  width: auto;
   border-radius: 20px;
-  margin-bottom: 2vh;
+  margin: 2%;
 }
 
 .navbar{

@@ -120,22 +120,23 @@ function Menu(){
     //change to checkbox from select/option
     //refer to this for UI: https://www.youtube.com/watch?v=oy9TEteCXdU&ab_channel=TheNetNinja
     return(
-        <div className="container">
-            <h2>Today's Menu</h2>
-            <p></p>
-            {menu.length === 0?
-                <div className="progress">
-                    <div className="indeterminate"></div>
-                </div>:
-                <div className="menu">
-                    {menu.map((category,id)=>{return <FoodCards key={id} menu={category} addItem={addItem} removeItem={removeItem}/>})}
-                </div>
-            }
-            {
-            localStorage.getItem("jwt")===null?
-                <div className="waves-effect waves-light btn" onClick={history.push('signin')}>SignIn To Order</div>:
-                <div className="waves-effect waves-light btn" onClick={placeOrder}>Order Now!</div>}
-        </div> 
+        <div>
+            <h2 className="menu-heading">Today's Menu</h2>
+            
+                {menu.length === 0?
+                    <div className="progress">
+                        <div className="indeterminate"></div>
+                    </div>:
+                    <div className="menu">
+                        {menu.map((category,id)=>{return <FoodCards key={id} menu={category} addItem={addItem} removeItem={removeItem}/>})}
+                    </div>
+                }
+                {
+                localStorage.getItem("jwt")===null?
+                    <div className="waves-effect waves-light btn" onClick={history.push('signin')}>SignIn To Order</div>:
+                    <div className="waves-effect waves-light btn" onClick={placeOrder}>Order Now!</div>}
+            
+        </div>
     )
 }
 
