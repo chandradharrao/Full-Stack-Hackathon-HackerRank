@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import FoodCards from "./FoodCards/FoodCards";
 
+
 //add quantity feature
 function Menu(){
     const history = useHistory();
@@ -15,7 +16,7 @@ function Menu(){
         setOrder(temp);
     }
 
-    function onSubmitHandler(){
+    function placeOrder(){
         let fd = {name:null,price:null};
         for(let i = 0;i<order.length;i++){
             let temp = order[i].split("&");
@@ -45,25 +46,76 @@ function Menu(){
 
     //get the menu from server
     useEffect(()=>{
-        console.log("Called once")
+        console.log("Called once");
         fetch("/menu").then(res=>res.json()).then((items)=>{
             let temp = [];
-            for(let i = 0;i<items.menu.length;i++){
-                console.log(items.menu[i]);
-                temp.push(items.menu[i])
+            console.log("Items:::::");
+            console.log(items);
+            for(let i = 0; i < items.menu.length; i++){                
+                for(let j = 0; j < items.menu[i].items.length; j++) items.menu[i].items[j].quantity = 0;
+                temp.push(items.menu[i]);
             }
             setMenu(temp);
         })
     },[])
 
-    const addItem = (props)=>{
-        console.log("Added Item")
-        console.log(props)
+    const addItem = (product)=>{
+        //console.log("Added Item: "+product.text);
+        //console.log(order)
+        const category = menu.findIndex(p => p.category === product.category);
+        if(category >= 0){
+            const item = menu[category].items.findIndex(p => p.name === product.text);
+            if(item >= 0){
+                menu[category].items[item].quantity += 1;
+                setMenu(menu);
+                const cartIndex = order.findIndex(p => p.name === product.text);
+                if(cartIndex >= 0){
+                    const cart = order.slice();
+                    const existingProduct = cart[cartIndex];
+                    const updatedProduct = {...existingProduct, quantity: existingProduct.quantity + 1};
+                    cart[cartIndex] = updatedProduct
+                    setOrder(cart)
+                }
+                else{
+                    const newItem = menu[category].items[item];
+                    newItem.quantity = 1;
+                    setOrder([...order, newItem])
+                }
+            }
+            else{
+                console.log("Invalid Product"); // A product which is not in the menu has been passed (possibly by manually editing the webpage)
+            }
+        }
+        else{
+            console.log("Invalid Product"); // A product which is not in the menu has been passed (possibly by manually editing the webpage)
+        }
     }
 
-    const removeItem = (props)=>{
-        console.log("Removed Item")
-        console.log(props)
+    const removeItem = (product)=>{
+        const category = menu.findIndex(p => p.category === product.category);
+        if(category >= 0){
+            const item = menu[category].items.findIndex(p => p.name === product.text);
+            if(item >= 0){
+                if(menu[category].items[item].quantity){
+                    menu[category].items[item].quantity -= 1;
+                    setMenu(menu);
+                    const cartIndex = order.findIndex(p => p.name === product.text);
+                    if(cartIndex >= 0){
+                        const cart = order.slice();
+                        const existingProduct = cart[cartIndex];
+                        const updatedProduct = {...existingProduct, quantity: existingProduct.quantity - 1};
+                        cart[cartIndex] = updatedProduct
+                        setOrder(cart)
+                    }
+                } 
+            }
+            else{
+                console.log("Invalid Product"); // A product which is not in the menu has been passed (possibly by manually editing the webpage)
+            }
+        }
+        else{
+            console.log("Invalid Product"); // A product which is not in the menu has been passed (possibly by manually editing the webpage)
+        }
     }
     //change to checkbox from select/option
     //refer to this for UI: https://www.youtube.com/watch?v=oy9TEteCXdU&ab_channel=TheNetNinja
@@ -73,33 +125,18 @@ function Menu(){
             <p></p>
             {menu.length === 0?
                 <div className="progress">
-                    <div className="indeterminate">
-                    </div>
+                    <div className="indeterminate"></div>
                 </div>:
-                <form className="menu">{menu.map((category,id)=>{
-                console.log("a")
-                console.log(category)
-                return [
-                    <FoodCards id={id} menu={category} addItem={addItem} removeItem={removeItem}/>
-                ]
-            /*
-            return [
-                <p key={id}>
-                    <label>
-                        <input type="number" min="0" max="100" name={item.name + "&" + item.price} onChange={(event)=>{onChangeHandler(event)}}/>
-                        <span>{item.name + " " + " Cost :  " + item.price}</span>
-                    </label>
-                </p>
-                ]
-            */
-            })}</form>}
-            {localStorage.getItem("jwt")===null?<div className="waves-effect waves-light btn" onClick={history.push('signin')}>SignIn To Order</div>:<div className="waves-effect waves-light btn" onClick={onSubmitHandler}>Order Now!</div>}
+                <div className="menu">
+                    {menu.map((category,id)=>{return <FoodCards key={id} menu={category} addItem={addItem} removeItem={removeItem}/>})}
+                </div>
+            }
+            {
+            localStorage.getItem("jwt")===null?
+                <div className="waves-effect waves-light btn" onClick={history.push('signin')}>SignIn To Order</div>:
+                <div className="waves-effect waves-light btn" onClick={placeOrder}>Order Now!</div>}
         </div> 
     )
 }
 
 export default Menu;
-
-/*menu.map((item,id)=>{
-            return <li className="collection-item" value={`${menu[id].name}&${menu[id].price}`} key={id}>{item.name} : {item.price}</li>
-            })*/

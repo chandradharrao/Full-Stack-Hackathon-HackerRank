@@ -9,8 +9,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .container{
@@ -18,14 +17,29 @@ code {
   font-style: italic;
 }
 
+.container-login{
+  color: white;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  font-style: italic;
+}
+
+.login-form{
+  background-color: white;
+  border-radius: 20px;
+  height: 30vh;
+  padding: 1%;
+}
+
+
 .container h2 {
   color: rgb(255, 255, 255);
 }
 
 .menu{
   width: 90vw;
-  background-color: rgb(75, 73, 70);
   border-radius: 20px;
+  margin-bottom: 2vh;
 }
 
 .navbar{

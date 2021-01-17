@@ -1,7 +1,8 @@
 .foodMenu {
   padding: 1rem;
-  background: rgba(131, 131, 190, 0.404);
+  background-color: rgb(104, 101, 97);
   border-radius: 20px;
+  margin-bottom: 2vh;
 }
 
 h1 {
@@ -23,8 +24,7 @@ h1 {
   display: flex; 
   width: 400px;
   margin: 0 1rem;
-  border-radius: 10px;
-  
+  border-radius: 10px;  
 }
 
 .foodItemContainer {

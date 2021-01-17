@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Link,useHistory} from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+//import 'react-toastify/dist/ReactToastify.css'
 toast.configure();
 
 function SignIn(){
@@ -64,10 +64,11 @@ function SignIn(){
     return(
         <div>
             <div>
-                <div className="container">
+                <div className="container-login">
                     {load}
                     <h2>Login</h2>
-                    <form>
+                    <form className="login-form">
+                        &nbsp;
                         <div className="input-field">
                             <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Username"/>
                         </div>

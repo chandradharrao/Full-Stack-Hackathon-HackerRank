@@ -16,6 +16,7 @@ function FoodCards(props) {
                       removeItem={props.removeItem}
                       price={item.price}
                       count={item.quantity}
+                      category={props.menu.category}
                     />
                 ]
           });
