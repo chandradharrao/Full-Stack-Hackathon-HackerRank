@@ -5,9 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container{
+  margin-left: 5vw;
+  font-style: italic;
+}
+
+.container h2 {
+  color: rgb(255, 255, 255);
+}
+
+.menu{
+  width: 90vw;
+  background-color: rgb(75, 73, 70);
+  border-radius: 20px;
+}
+
+.navbar{
+  margin-left: 2vw;
+  margin-right: 2vw;
 }

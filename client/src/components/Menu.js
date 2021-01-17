@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import FoodCards from "./FoodCards/FoodCards";
 
 //add quantity feature
 function Menu(){
@@ -55,14 +56,42 @@ function Menu(){
         })
     },[])
 
+    const addItem = (props)=>{
+        console.log("Added Item")
+        console.log(props)
+    }
+
+    const removeItem = (props)=>{
+        console.log("Removed Item")
+        console.log(props)
+    }
     //change to checkbox from select/option
     //refer to this for UI: https://www.youtube.com/watch?v=oy9TEteCXdU&ab_channel=TheNetNinja
     return(
         <div className="container">
             <h2>Today's Menu</h2>
             <p></p>
-            {menu.length === 0?<div className="progress"><div className="indeterminate"></div></div>:<form>{menu.map((item,id)=>{
-            return <p key={id}><label><input type="checkbox" value={item.name + "&" + item.price} onChange={(event)=>{onChangeHandler(event)}}/><span>{item.name + " " + " Cost :  " + item.price}</span></label></p>
+            {menu.length === 0?
+                <div className="progress">
+                    <div className="indeterminate">
+                    </div>
+                </div>:
+                <form className="menu">{menu.map((category,id)=>{
+                console.log("a")
+                console.log(category)
+                return [
+                    <FoodCards id={id} menu={category} addItem={addItem} removeItem={removeItem}/>
+                ]
+            /*
+            return [
+                <p key={id}>
+                    <label>
+                        <input type="number" min="0" max="100" name={item.name + "&" + item.price} onChange={(event)=>{onChangeHandler(event)}}/>
+                        <span>{item.name + " " + " Cost :  " + item.price}</span>
+                    </label>
+                </p>
+                ]
+            */
             })}</form>}
             {localStorage.getItem("jwt")===null?<div className="waves-effect waves-light btn" onClick={history.push('signin')}>SignIn To Order</div>:<div className="waves-effect waves-light btn" onClick={onSubmitHandler}>Order Now!</div>}
         </div> 

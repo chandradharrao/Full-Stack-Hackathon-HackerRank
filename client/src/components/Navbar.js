@@ -4,7 +4,7 @@ function Navbar(){
     return(
         <nav>
         <div className="nav-wrapper red darken-3">
-          <div className="container">
+          <div className="navbar">
               <Link to="/signin" className="brand-logo">Office Cafe</Link>
               <ul className="right">
                 <li><Link to="/signin">Sign In</Link></li>

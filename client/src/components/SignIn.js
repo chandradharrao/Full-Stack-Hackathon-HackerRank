@@ -77,7 +77,7 @@ function SignIn(){
                         <div className="input-field">
                             <button className="btn" onClick={(event)=>onClickHandler(event)}>SignIn</button>
                         </div>
-                        <Link to="/registrationform">Dont have an account?</Link>
+                        <Link to="/signup">Dont have an account?</Link>
                     </form>
                 </div>
             </div>
