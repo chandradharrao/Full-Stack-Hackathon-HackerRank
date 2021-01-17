@@ -1,5 +1,6 @@
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 import {Link,useHistory} from 'react-router-dom';
+import {UserDetailsContext} from "../App"
 import { toast } from 'react-toastify';
 //import 'react-toastify/dist/ReactToastify.css'
 toast.configure();
@@ -9,6 +10,8 @@ function SignIn(){
     const [password, setPassword] = useState("");
     const [load,setLoad] = useState("");
     const history = useHistory();
+    //destructure the state and dispatch function from context provider's value
+    const {state,dispatch} = useContext(UserDetailsContext)
 
     function onChangeHandler(event) {
         if(event.target.name === "username"){
@@ -47,8 +50,14 @@ function SignIn(){
 
                 //store token and user info present in response in local storage
                 localStorage.setItem("jwt",data.token);
+                console.log(data.user);
                 localStorage.setItem("user",JSON.stringify(data.user));
                 console.log("Successfull login.....")
+
+                //only dispatch is allowed to change state by dispatching action
+                //store user data in redux state
+                dispatch({type:"SET_USER_DETAILS",payload:data.user})
+                
                 //navigate user to menu
                 setTimeout(()=>{
                     history.push('/menu');

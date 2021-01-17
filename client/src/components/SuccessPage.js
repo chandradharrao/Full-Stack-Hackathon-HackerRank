@@ -1,15 +1,17 @@
-import {useParams,Link} from 'react-router-dom';
+import {useParams,Link,useHistory} from 'react-router-dom';
+import {useEffect} from 'react';
 
 function SuccessPage(){
     let params = useParams();
     let id = params.id;
     let empid = params.empid;
+    let history = useHistory();
 
-    /*useEffect(()=>{
+    useEffect(()=>{
         setTimeout(() => {
-            history.push("/client/src/components/SignIn.js");
+            history.push("/menu");
         }, 5000);
-    },[])*/
+    },[])
 
     //let URL = 'end point to get user data given id of user' + id;
     return(

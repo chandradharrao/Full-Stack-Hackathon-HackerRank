@@ -23,7 +23,7 @@ router.post("/signup",(req,res)=>{
         //if found
         if(dbUser){
             console.log("user already in db :(");
-            res.json({error:"User already exists in db",message:"Create new account"})
+            res.json({error:"User already exists in db",message:"User with this details already exists"})
         }
         else{
             console.log("Creating user.....")
@@ -49,14 +49,25 @@ router.post("/signup",(req,res)=>{
                 });
                 newUser.save().then((x)=>{
                     console.log("New user created!")
-                    res.json({message:"Successful Registration",note:"redirecting to login page...",regID:regID,success:true})
+                    //create json web token for auth the user
+                    jwt.sign({signedRegID:x.regID},signature,(err,temp)=>{
+                        if(err){
+                            console.og(err);
+                            res.json({error:"Server is busy at the moment...",user:null})
+                        }
+                        else{
+                            req.user = x;
+                            res.json({message:"Successful Registration",note:"redirecting to login page...",regID:regID,success:true,user:x,token:temp})
+                        }
+                    })
                 }).catch(err=>{
                     console.log("unable to create new user : " + "because of the error " + err);
-                    res.json({success:false,error:"Unable to register",message:"try again.."})
+                    res.json({success:false,error:"Unable to register",message:"try again..",user:null})
                 })
             }).catch(err=>{
                 //dev error
                 console.log(err);
+                res.json({error:"Server is busy at the moment...",user:null})
             })
         }
     })
@@ -77,26 +88,29 @@ router.post('/login',(req,res)=>{
             bcrypt.compare(password,dbUser.password).then((match)=>{
                 if(match){
                     console.log("Matched password and username")
-                    //attach user with token so thathe can access protected resource like menu
+                    //attach user with token so tha they can access protected resource like menu
                     let token = null;
                     jwt.sign({signedRegID:dbUser.regID},signature,(err,temp)=>{
                         if(err){
                             //error for dev
                             console.log(err);
+                            res.json({error:"Server is busy at the moment...",user:null})
                         }
                         else{
                             console.log("Successful sign in...")
                             token = temp;
+                            //attach user data to req
+                            req.user = dbUser;
                             //console.log(token);
-                            res.json({message:"Successfully Signed In",token:token,success:true})
+                            res.json({message:"Successfully Signed In",token:token,success:true,user : req.user})
                         }
                     })
                 }else{
-                    res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password",success:false})
+                    res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password",success:false,user:null})
                 }
-            }).catch(err=>{console.log(err)})
+            }).catch(err=>{console.log(err);res.json({error:"Server is busy at the moment...",user:null})})
         }
-    }).catch(err=>console.log(err))
+    }).catch(err=>{console.log(err);res.json({error:"Server is busy at the moment...",user:null})})
 })
 
 module.exports = router;

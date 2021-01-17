@@ -1,15 +1,35 @@
 import {Link} from 'react-router-dom'
+import {useContext} from 'react';
+import { UserDetailsContext } from '../App';
 
 function Navbar(){
+  //grab the dispatch and state from the context
+  const {state,dispatch} = useContext(UserDetailsContext);
+
+  //the Links that need to be dispalyed acc to user data on localstorage
+  function renderLinks(){
+    if(state != null){
+      //if he is signed in
+      return [
+        <li key="1"><Link to="/menu">Menu</Link></li>,
+        <li key="2" onClick={()=>{dispatch({type:"DEL_USER_DETAILS"})}}><Link to="/signin">Logout</Link></li>
+      ]
+    }else{
+      //if not signed in
+      return [
+        <li key="1"><Link to="/signin">Sign In</Link></li>,
+        <li key="2"><Link to="/signup">Register</Link></li>
+      ]
+    }
+  }
+
     return(
         <nav>
         <div className="nav-wrapper red darken-3">
-          <div className="navbar">
-              <Link to="/signin" className="brand-logo">Office Cafe</Link>
+          <div className="container">
+              <Link to={state===null?"/signin":"/menu"} className="brand-logo">Office Cafe</Link>
               <ul className="right">
-                <li><Link to="/signin">Sign In</Link></li>
-                <li><Link to="/signup">Register</Link></li>
-                <li><Link to="/menu">Menu</Link></li>
+                {renderLinks()}
               </ul>
           </div>
         </div>
@@ -18,16 +38,3 @@ function Navbar(){
 }
 
 export default Navbar;
-
-/*const [logo,setLogo] = useState(localStorage.getItem("jwt"));
-  const [signin,setSignin] = useState(localStorage.getItem("jwt"));
-  const [reg,setReg] = useState(localStorage.getItem("jwt"));
-  const [home,setHome] = useState(localStorage.getItem("jwt"));
-  const [logout,setLogout] = useState(localStorage.getItem(""));
-
-  if(localStorage.getItem("jwt") === null){
-    setLogo("/signin");
-    setSignin("/signin");
-    setReg("/signin");
-    setHome("/home")
-  }*/

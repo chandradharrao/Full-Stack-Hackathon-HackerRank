@@ -1,8 +1,9 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState,useReducer, useContext} from 'react';
 import {useHistory,Link} from 'react-router-dom'
 import PreviewForm from './PreviewForm';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { UserDetailsContext } from '../App';
 toast.configure();
 
 function RegForm(){
@@ -33,6 +34,8 @@ function RegForm(){
     const [valid,setValid] = useState("");
     //state to store loading element
     const [load,setLoad] = useState(null);
+    //use the context to access state and dispatcher
+    const {state,dispatch} = useContext(UserDetailsContext);
 
     //useEffect triggered when user clicks on submit button 
     //setStates are async and take a while to perform
@@ -81,8 +84,13 @@ function RegForm(){
                                 const id = serverData.regID;
                                 //console.log("id from server " + id)
 
-                                //ToDo : create a toast for success
+                                //create a toast for success
                                 toast.success(serverData.message)
+
+                                //store the user data
+                                dispatch({type:"SET_USER_DETAILS",payload:serverData.user})
+                                localStorage.setItem("user",JSON.stringify(serverData.user));
+                                localStorage.setItem("jwt",serverData.token);
 
                                 setTimeout(() => {
                                     //navigate the user manually to the successpage
@@ -91,6 +99,7 @@ function RegForm(){
                             }else{
                                 //ToDo : create a toast for failure
                                 toast.error(serverData.message);
+                                setLoad(null);
                                 //console.log("Server sent error " + serverData.error)
                             }
                         }).catch((err)=>{
@@ -357,9 +366,9 @@ function RegForm(){
                 <p></p>
                 <div className="waves-effect waves-light btn" onClick={formValidation}>Upload form</div>
                 <p></p>
+            </form>
                 <Link to="/signin">Already Have an account?</Link>
                 <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
-            </form>
         </div>
 
     )
