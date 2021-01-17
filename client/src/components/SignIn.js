@@ -71,27 +71,23 @@ function SignIn(){
     }
 
     return(
-        <div>
-            <div>
-                <div className="container-login">
-                    {load}
-                    <h2>Login</h2>
-                    <form className="login-form">
-                        &nbsp;
-                        <div className="input-field">
-                            <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Username"/>
-                        </div>
-                        <div className="input-field">
-                            <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password" placeholder="Password"/>
-                        </div>
-                        <div className="input-field">
-                            <button className="btn" onClick={(event)=>onClickHandler(event)}>SignIn</button>
-                        </div>
-                        <Link to="/signup">Dont have an account?</Link>
-                    </form>
+        <div className="container-login">
+            {load}
+            <h2>Login</h2>
+            <form className="login-form">
+                &nbsp;
+                <div className="input-field">
+                    <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Username"/>
                 </div>
-            </div>
-        </div>
+                <div className="input-field">
+                    <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password" placeholder="Password"/>
+                </div>
+                <div className="input-field">
+                    <button className="btn" onClick={(event)=>onClickHandler(event)}>SignIn</button>
+                </div>
+                <Link to="/signup">Dont have an account?</Link>
+            </form>
+        </div> 
     )
 }
 

@@ -23,17 +23,17 @@ function Navbar(){
     }
   }
 
-    return(
-        <nav>
-        <div className="nav-wrapper red darken-3">
-          <div className="container">
-              <Link to={state===null?"/signin":"/menu"} className="brand-logo">Office Cafe</Link>
-              <ul className="right">
-                {renderLinks()}
-              </ul>
-          </div>
+  return(
+    <nav>
+      <div className="nav-wrapper red darken-3">
+        <div className="navbar">
+            <Link to={state===null?"/signin":"/menu"} className="brand-logo">Office Cafe</Link>
+            <ul className="right">
+              {renderLinks()}
+            </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
     )
 }
 

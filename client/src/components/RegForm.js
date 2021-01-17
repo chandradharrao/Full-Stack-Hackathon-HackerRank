@@ -337,9 +337,10 @@ function RegForm(){
     }
 
     return(
-        <div className="container">
+        <div className="registration">
+        <div className="container-registration">
             {load}
-            <form>
+            <form className="registration-form">
                 <h1>Registration Form</h1>
                 <div className="input-field">
                     <input type="text" value={name} placeholder="Name" onChange={(event)=>onChangeHandler(event)} id="name-input"/>
@@ -367,10 +368,10 @@ function RegForm(){
                 <div className="waves-effect waves-light btn" onClick={formValidation}>Upload form</div>
                 <p></p>
             </form>
-                <Link to="/signin">Already Have an account?</Link>
                 <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
-        </div>
-
+                <Link to="/signin">Already Have an account?</Link>
+        </div>  
+        </div>  
     )
 }
 
