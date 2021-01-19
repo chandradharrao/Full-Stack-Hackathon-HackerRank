@@ -6,6 +6,7 @@ import Payment from "./Payment";
 import {UserDetailsContext} from "../App"
 import SignIn from './SignIn';
 import RegForm from './RegForm';
+import Profile from './Profile';
 
 //render component based on the nav link
 function Routing(){
@@ -43,6 +44,7 @@ function Routing(){
             <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
             <Route path = "/menu" component={Menu}/>
             <Route path = "/payment" component={Payment}/>
+            <Route path = "/profile" component={Profile}/>
         </Switch>
     )
 }

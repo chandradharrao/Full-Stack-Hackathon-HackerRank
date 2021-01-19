@@ -34,6 +34,10 @@ router.post("/signup",(req,res)=>{
             console.log("Creating password...")
             //hash password
             bcrypt.hash(empID,12).then((hashedPassword)=>{
+                //generate the date in dd/mm/yyyy
+                let currDate = new Date().toLocaleDateString('en-GB');
+                console.log("reg date : " + currDate)
+                
                 //save data to db
                 const newUser = new User({
                     name,
@@ -45,7 +49,7 @@ router.post("/signup",(req,res)=>{
                     regID,
                     imgURL,
                     password:hashedPassword,
-                    regDate:new Date()
+                    regDate:currDate
                 });
                 newUser.save().then((x)=>{
                     console.log("New user created!")
