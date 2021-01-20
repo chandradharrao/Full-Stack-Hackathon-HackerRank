@@ -82,8 +82,8 @@ router.post('/login',(req,res)=>{
     const {username,password} = req.body;
     console.log(req.body);
 
-    //search db
-    User.findOne({regID:username}).then(dbUser=>{
+    //search db : username : empID,password : whatever user wants
+    User.findOne({empID:username}).then(dbUser=>{
         //if user not present
         if(!dbUser){
             res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password"})
@@ -94,7 +94,7 @@ router.post('/login',(req,res)=>{
                     console.log("Matched password and username")
                     //attach user with token so tha they can access protected resource like menu
                     let token = null;
-                    jwt.sign({signedRegID:dbUser.regID},signature,(err,temp)=>{
+                    jwt.sign({signedRegID:dbUser.empID},signature,(err,temp)=>{
                         if(err){
                             //error for dev
                             console.log(err);

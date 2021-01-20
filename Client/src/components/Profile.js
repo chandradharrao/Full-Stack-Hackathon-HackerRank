@@ -8,7 +8,7 @@ function Profile(){
     return(
         <div className = "container">
             <div className="card">
-                <div class = "card-header">
+                <div className = "card-header">
                     <img src = {state.imgURL} alt="profile pic"></img>
                 </div>
                 <div className="card-content">

@@ -17,7 +17,7 @@ function SuccessPage(){
         <div>
             <div className="container">
             <h2 className="header">Successful Registration</h2>
-            <img src = ".../..public/idCard.png" alt="success"></img>
+            <img src = "./success.png" alt="success"></img>
             <div className="card horizontal"></div>
                 <div className="card-stacked">
                     <div className="card-content">
