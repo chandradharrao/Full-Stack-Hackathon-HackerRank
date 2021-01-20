@@ -1,39 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans);
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-
-
 .registration{
-  background-color: rgb(138, 135, 135);
+  background-color:antiquewhite;
   margin: 2vw;
   border-radius: 20px;
   height: auto;
   padding-bottom: 5vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.registration h1{
+  font-size: 50px;
+  color:#303F9F;
+  font-weight: bold;
+  text-align: center;
 }
 
 .container-login{
   color: white;
   margin-left: 5vw;
   margin-right: 5vw;
-  font-style: italic;
 }
 
 .container-registration{
   color: rgb(0, 0, 0);
   margin-left: 5vw;
   margin-right: 5vw;
-  font-style: italic;
   display: flex;
   flex-wrap: wrap;
 }
@@ -45,12 +45,36 @@ code {
   padding: 1%;
 }
 
+.prev-list h5{
+  color:rgb(0, 0, 0);
+  font-weight: bold;
+  padding:5px;
+  margin-left: 100px;
+  margin-top: 20px;
+}
+
+.prev-field {
+  background-color: aliceblue;
+}
+
 .registration-form{
   border-radius: 20px;
   width:50%;
   padding: 1%;
+  box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.7);
 }
 
+.registration-form h3{
+  font-size: 50px;
+  font-weight: bold;
+  color:#303F9F;
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+.reg-id{
+  color:#303F9F
+}
 
 .menu-heading{
   color: rgb(255, 255, 255);

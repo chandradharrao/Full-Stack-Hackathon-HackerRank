@@ -14,7 +14,7 @@ router.post("/signup",(req,res)=>{
     console.log("Signup route...");
 
     //destructure from body
-    const {name,orgName,empID,mobNo,email,imgURL} = req.body;
+    const {name,orgName,empID,mobNo,email,password,imgURL} = req.body;
     console.log("this is the req.body " + req.body);
 
     console.log("Searching in db....");
@@ -33,7 +33,7 @@ router.post("/signup",(req,res)=>{
 
             console.log("Creating password...")
             //hash password
-            bcrypt.hash(empID,12).then((hashedPassword)=>{
+            bcrypt.hash(password,12).then((hashedPassword)=>{
                 //generate the date in dd/mm/yyyy
                 let currDate = new Date().toLocaleDateString('en-GB');
                 console.log("reg date : " + currDate)

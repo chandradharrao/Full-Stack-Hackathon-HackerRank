@@ -4,7 +4,6 @@ import {useEffect} from 'react';
 function SuccessPage(){
     let params = useParams();
     let id = params.id;
-    let empid = params.empid;
     let history = useHistory();
 
     useEffect(()=>{
@@ -18,13 +17,12 @@ function SuccessPage(){
         <div>
             <div className="container">
             <h2 className="header">Successful Registration</h2>
+            <img src = ".../..public/idCard.png" alt="success"></img>
             <div className="card horizontal"></div>
                 <div className="card-stacked">
                     <div className="card-content">
-                        <ul className="collection with-header">
-                            <li className="collection-item">Your Username : {id}</li>
-                            <li className="collection-item">Your Password : {empid}</li>
-                        </ul>
+                        <h5 className="reg-id">Registration ID : {id}</h5>
+                        <p>Redirecting to menu ....</p>
                         <Link to="/signin" className="waves-effect waves-light btn">Sign In</Link>
                     </div>
                 </div>
