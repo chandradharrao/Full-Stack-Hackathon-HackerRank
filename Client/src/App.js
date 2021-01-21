@@ -4,7 +4,6 @@ import Routing from './components/Routing';
 //import the reducer function and the state
 import {UserDetailsState,UserDetailsReducer} from "./reducers/userDetailsReducer"
 import {createContext,useReducer} from 'react';
-import { json } from 'body-parser';
 //import Cookies from "js-cookie";
 
 //create context(returns an obj with 2 values : consumer and provider)

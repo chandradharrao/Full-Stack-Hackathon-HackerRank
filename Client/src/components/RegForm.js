@@ -167,7 +167,7 @@ function RegForm(){
             setLoad(<div className="progress">
                         <div className="indeterminate"></div>
                     </div>)
-            fetch("https://api.cloudinary.com/v1_1/chandracloudinarystorage123/image/upload",{
+            fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload",{
                 method:"POST",
                 body:fd
             }).then(res=>res.json()).then(data=>{
