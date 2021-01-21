@@ -410,7 +410,7 @@ function RegForm(){
                 <p></p>
             </form>
                 <PreviewForm previewData={[name,orgName,empID,mobNo,email,password,localImgUrl]}/>
-                <Link to="/signin">Already Have an account?</Link>
+                <p className="footer-acc"><Link to="/signin">Already Have an account?</Link></p>
         </div>  
         </div>  
     )

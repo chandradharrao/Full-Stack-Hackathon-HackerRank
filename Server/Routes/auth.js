@@ -79,8 +79,14 @@ router.post("/signup",(req,res)=>{
 
 router.post('/login',(req,res)=>{
     console.log("Signing in route...");
+    //const {username,password,rememberMe} = req.body;
     const {username,password} = req.body;
     console.log(req.body);
+
+    if(username == "" || password == ""){
+        res.json({message:"Please fill all the fields",success:false});
+        return;
+    }
 
     //search db : username : empID,password : whatever user wants
     User.findOne({empID:username}).then(dbUser=>{
@@ -103,6 +109,9 @@ router.post('/login',(req,res)=>{
                         else{
                             console.log("Successful sign in...")
                             token = temp;
+                            //attach rememebr me bool to the client cookie
+                            //oneYearToSeconds = 365*24*60*60;
+                            //res.cookie("doRememebrMe",rememberMe,{maxAge:oneYearToSeconds});
                             //attach user data to req
                             req.user = dbUser;
                             //console.log(token);

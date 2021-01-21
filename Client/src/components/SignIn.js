@@ -9,9 +9,10 @@ function SignIn(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [load,setLoad] = useState("");
+    const [rem,setRem] = useState(localStorage.getItem("rememberMe") === null?false:JSON.parse(localStorage.getItem("rememberMe")).bool);
     const history = useHistory();
     //destructure the state and dispatch function from context provider's value
-    const {state,dispatch} = useContext(UserDetailsContext)
+    const {state,dispatch} = useContext(UserDetailsContext);
 
     function onChangeHandler(event) {
         if(event.target.name === "username"){
@@ -21,11 +22,28 @@ function SignIn(){
         }
     }
 
+    //func to remeber me
+    function rememebrMeFunc(e){
+        setRem(e.target.checked);
+        console.log(e.target.checked);
+        localStorage.setItem("rememberMe",JSON.stringify({bool:e.target.checked}))
+    }
+
     function onClickHandler(event){
         //prevent default action of reloading
         event.preventDefault()
         //debugger;
         //make a post request to server sign in
+        /*const reqOptions = { 
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}, 
+            credentials: 'include',
+            method: 'POST', 
+            body: JSON.stringify({
+            username,
+            password,
+            rememberMe : rem
+        })
+    }*/
         const reqOptions = {
             method:"POST",
             headers:{'Content-Type': 'application/json'},
@@ -63,6 +81,7 @@ function SignIn(){
                     history.push('/menu');
                 },1000)
             }else{
+                setLoad(null);
                 //make toast with failure message
                 toast.error(data.message);
                 console.log(data.error + " : " + data.message);
@@ -77,7 +96,7 @@ function SignIn(){
             <form className="login-form">
                 &nbsp;
                 <div className="input-field">
-                    <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Username"/>
+                    <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Employee ID"/>
                 </div>
                 <div className="input-field">
                     <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password" placeholder="Password"/>
@@ -85,6 +104,12 @@ function SignIn(){
                 <div className="input-field">
                     <button className="btn" onClick={(event)=>onClickHandler(event)}>SignIn</button>
                 </div>
+                <p>
+                    <label>
+                        <input type="checkbox" checked={rem} onChange={(e)=>rememebrMeFunc(e)}/>
+                        <span>Rememebr me</span>
+                    </label>
+                </p>
                 <Link to="/signup">Dont have an account?</Link>
             </form>
         </div> 
