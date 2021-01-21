@@ -7,18 +7,18 @@ function Profile(){
     
     return(
         <div className = "container">
-            <div className="card">
-                <div className = "card-header">
-                    <img src = {state.imgURL} alt="profile pic"></img>
+            <div className="card" id="profile-card">
+                <div className = "card-header" id="profile-header">
+                    <img src = {state.imgURL} alt="profile pic" ></img>
                 </div>
-                <div className="card-content">
+                <div className="card-content" id="profile-content">
                     <h3>Welcome {state.name}!</h3>
-                    <h4>Organization Name : {state.orgName}</h4>
+                    <h4>{state.orgName}</h4>
                     <h4>Registration Date : {state.regDate}</h4>
-                    <h4>Employee ID : {state.empID}</h4>
+                    <h4>{state.empID}</h4>
                     <h4>Registration ID : {state.regID}</h4>
-                    <h4>Email : {state.email}</h4>
-                    <h4>Mobile Number : {state.mobNo}</h4>
+                    <h4>{state.email}</h4>
+                    <h4>{state.mobNo}</h4>
                 </div>
             </div>
         </div>
