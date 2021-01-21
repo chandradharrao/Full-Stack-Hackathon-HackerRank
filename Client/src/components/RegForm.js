@@ -13,6 +13,8 @@ function RegForm(){
     const [empID,setEmpID] = useState("");
     const [mobNo,setMobNo] = useState("");
     const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [confirmPassword,setConfirmPassword] = useState("");
     const [img,setImg] = useState(".../..public/idCard.png");
     //this state variable will hold the temp url of the image uploaded
     const [localImgUrl,setLocalImgUrl] = useState("./idCard.png");
@@ -24,6 +26,7 @@ function RegForm(){
         empID:{},
         mobNo:null,
         email:{},
+        password:{},
         img:{}
     });
     //this state will be used to display the error message
@@ -41,7 +44,7 @@ function RegForm(){
     //setStates are async and take a while to perform
     useEffect(()=>{
         //check if all inputs are valid
-        if(valid!=="" && valid){//all input fields are correct
+        if(valid!=="" && valid){//all input fields are correct and to prevent execution on first time loading of useEffect
             //promise 
             let imgURL= cloudinaryUploadPromise();
             //after execution and getting result of promise that creates image url
@@ -58,6 +61,7 @@ function RegForm(){
                     data.empID = empID;
                     data.mobNo = mobNo;
                     data.imgURL = value;
+                    data.password = password;
                     
                     //post data to server
                     fetch('/signup',{
@@ -163,7 +167,7 @@ function RegForm(){
             setLoad(<div className="progress">
                         <div className="indeterminate"></div>
                     </div>)
-            fetch("https://api.cloudinary.com/v1_1/chandracloudinarystorage123/image/upload",{
+            fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload",{
                 method:"POST",
                 body:fd
             }).then(res=>res.json()).then(data=>{
@@ -184,6 +188,7 @@ function RegForm(){
             empID:{},
             mobNo:{},
             email:{},
+            password:{},
             img:{}
         };
 
@@ -197,21 +202,23 @@ function RegForm(){
         
         //console.log("img ....... : " + img);
         //check for empty fields
-        if(name === "" || orgName === "" || empID === "" || mobNo === "" || email === "" || img === defaultIMG){
+        if(name === "" || orgName === "" || empID === "" || mobNo === "" || email === "" || img === defaultIMG || password === "" || confirmPassword === ""){
             //console.log("Some empty fields..");
             isValid = false;
 
-            //this will store the input form states in key value pair
+            //this will store the input form states in key value pair for easy printing of error
             let copyData = {
                 name,
                 orgName,
                 empID,
                 mobNo,
                 email,
+                password,
+                confirmPassword,
                 img
             };
 
-            //check for atleast one empty input form field
+            //check for the empty input form field or default image
             for(const prop in copyData){
                 //console.log(typeof prop)
                 if(copyData[prop] === "" || copyData[prop] === defaultIMG){
@@ -239,8 +246,8 @@ function RegForm(){
 
         //if name has integers
         for(let i = 0;i<name.length;i++){
-            //if not (not a number) === a number
-            if(!isNaN(name[i])){
+            //if not (not a number) === a number or is not a space
+            if(!isNaN(name[i]) && name[i]!==" "){
                 //console.log("Name should not contain numbers")
                 temp.name.nameNumber = "Name should not contain numbers";
                 isValid = false;
@@ -286,6 +293,27 @@ function RegForm(){
             temp.email.dotErr = "Email should contain . and string after that";
         }
 
+        //check for password and confirm password match
+        if(password !== confirmPassword){
+            isValid = false;
+            temp.password.donotMatchErr = "Passwords do not match";
+        }else{
+            //passwords match,check for length of passwords
+            if(password.length<12){
+                isValid = false;
+                temp.password.shortPass = "Password must be atleast 12 characters long";
+            }else{
+                //password is fine lenght,check for spaces in password as not allowed
+                for(let i = 0;i<password.length;i++){
+                    if(password[i] === " "){
+                        isValid = false;
+                        temp.password.spaceErr = "Spaces in password not allowed";
+                        break;
+                    }
+                }
+            }
+        }
+
         //check for format of image uploaded
         let imgNameArr =  img.name.split(".");
         let fileType = imgNameArr[imgNameArr.length - 1];
@@ -326,9 +354,16 @@ function RegForm(){
             case "email-input":
                 setEmail(event.target.value);
                 break;
+            case "pass-input":
+                setPassword(event.target.value);
+                break;
+            case "confirm-pass-input":
+                setConfirmPassword(event.target.value);
+                break;
             case "img-input":
                 setImg(event.target.files[0]);
                 console.log(event.target.files[0].name)
+                //creating local copy url of the image uploaded
                 setLocalImgUrl(window.URL.createObjectURL(event.target.files[0]))
                 break;
             default:
@@ -360,6 +395,12 @@ function RegForm(){
                 <div className="input-field">
                     <input type="text" value={email} placeholder="Email" onChange={(event)=>onChangeHandler(event)} id="email-input"/>
                 </div>
+                <div className="input-field">
+                    <input type="text" value={password} placeholder="Password" onChange={(event)=>onChangeHandler(event)} id="pass-input"/>
+                </div>
+                <div className="input-field">
+                    <input type="text" value={confirmPassword} placeholder="Confirm Password" onChange={(event)=>onChangeHandler(event)} id="confirm-pass-input"/>
+                </div>
                 <div>Upload ID Card</div>
                 <div className="btn">
                     <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
@@ -368,8 +409,8 @@ function RegForm(){
                 <div className="waves-effect waves-light btn" onClick={formValidation}>Submit</div>
                 <p></p>
             </form>
-                <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
-                <Link to="/signin">Already Have an account?</Link>
+                <PreviewForm previewData={[name,orgName,empID,mobNo,email,password,localImgUrl]}/>
+                <p className="footer-acc"><Link to="/signin">Already Have an account?</Link></p>
         </div>  
         </div>  
     )

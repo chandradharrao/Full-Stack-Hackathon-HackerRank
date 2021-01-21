@@ -14,7 +14,7 @@ router.post("/signup",(req,res)=>{
     console.log("Signup route...");
 
     //destructure from body
-    const {name,orgName,empID,mobNo,email,imgURL} = req.body;
+    const {name,orgName,empID,mobNo,email,password,imgURL} = req.body;
     console.log("this is the req.body " + req.body);
 
     console.log("Searching in db....");
@@ -33,7 +33,11 @@ router.post("/signup",(req,res)=>{
 
             console.log("Creating password...")
             //hash password
-            bcrypt.hash(empID,12).then((hashedPassword)=>{
+            bcrypt.hash(password,12).then((hashedPassword)=>{
+                //generate the date in dd/mm/yyyy
+                let currDate = new Date().toLocaleDateString('en-GB');
+                console.log("reg date : " + currDate)
+                
                 //save data to db
                 const newUser = new User({
                     name,
@@ -45,7 +49,7 @@ router.post("/signup",(req,res)=>{
                     regID,
                     imgURL,
                     password:hashedPassword,
-                    regDate:new Date()
+                    regDate:currDate
                 });
                 newUser.save().then((x)=>{
                     console.log("New user created!")
@@ -75,11 +79,17 @@ router.post("/signup",(req,res)=>{
 
 router.post('/login',(req,res)=>{
     console.log("Signing in route...");
+    //const {username,password,rememberMe} = req.body;
     const {username,password} = req.body;
     console.log(req.body);
 
-    //search db
-    User.findOne({regID:username}).then(dbUser=>{
+    if(username == "" || password == ""){
+        res.json({message:"Please fill all the fields",success:false});
+        return;
+    }
+
+    //search db : username : empID,password : whatever user wants
+    User.findOne({empID:username}).then(dbUser=>{
         //if user not present
         if(!dbUser){
             res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password"})
@@ -90,7 +100,7 @@ router.post('/login',(req,res)=>{
                     console.log("Matched password and username")
                     //attach user with token so tha they can access protected resource like menu
                     let token = null;
-                    jwt.sign({signedRegID:dbUser.regID},signature,(err,temp)=>{
+                    jwt.sign({signedRegID:dbUser.empID},signature,(err,temp)=>{
                         if(err){
                             //error for dev
                             console.log(err);
@@ -99,6 +109,9 @@ router.post('/login',(req,res)=>{
                         else{
                             console.log("Successful sign in...")
                             token = temp;
+                            //attach rememebr me bool to the client cookie
+                            //oneYearToSeconds = 365*24*60*60;
+                            //res.cookie("doRememebrMe",rememberMe,{maxAge:oneYearToSeconds});
                             //attach user data to req
                             req.user = dbUser;
                             //console.log(token);

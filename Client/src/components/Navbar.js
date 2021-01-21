@@ -11,7 +11,8 @@ function Navbar(){
     if(state != null){
       //if he is signed in
       return [
-        <li key="1"><Link to="/menu">Menu</Link></li>,
+        <li key="1"><Link to="/menu">What's Cooking Today?</Link></li>,
+        <li key="3"><Link to="/profile">Profile</Link></li>,
         <li key="2" onClick={()=>{dispatch({type:"DEL_USER_DETAILS"})}}><Link to="/signin">Logout</Link></li>
       ]
     }else{

@@ -2,8 +2,9 @@
 const express = require("express");
 const PORT = 8080;
 const app = express();
+//const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const MONGOURI = "mongodb+srv://new_user-1:HKICn7cWWDJU742T@officecafeteria.ceis8.mongodb.net/officeCafeteria?retryWrites=true&w=majority";
+const MONGOURI = "PLACE_YOUR_URI";
 
 //connect to db
 mongoose.connect(MONGOURI,{ useUnifiedTopology: true ,useNewUrlParser: true ,useCreateIndex:true}).then(()=>{
@@ -14,6 +15,9 @@ mongoose.connect(MONGOURI,{ useUnifiedTopology: true ,useNewUrlParser: true ,use
 
 //middlewear to parse json from body
 app.use(express.json());
+
+//cookie parser middle wear
+//app.use(cookieParser)
 
 require('./Database/Models/user');
 

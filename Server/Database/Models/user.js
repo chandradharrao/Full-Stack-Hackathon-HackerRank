@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     regDate:{
-        type:Date,
+        type:String,
         required:true
     }
 });
