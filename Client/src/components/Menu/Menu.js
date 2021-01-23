@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import FoodCards from "./FoodCards/FoodCards";
+import FoodCards from "../FoodCards/FoodCards";
+import "./Menu.css";
 
 
 //add quantity feature
@@ -117,10 +118,17 @@ function Menu(){
             console.log("Invalid Product"); // A product which is not in the menu has been passed (possibly by manually editing the webpage)
         }
     }
-    //change to checkbox from select/option
-    //refer to this for UI: https://www.youtube.com/watch?v=oy9TEteCXdU&ab_channel=TheNetNinja
+
     return(
-        <div>            
+        <div>       
+            {localStorage.getItem("jwt")===null? history.push('signin'):
+                <div className="greet">
+                    <h1 className="user-greet">Welcome!!</h1>
+                </div>
+            }     
+            {order.length > 0?
+                    <button className="checkout" onClick={placeOrder}>Order Now!</button> : <></>
+                }
                 {menu.length === 0?
                     <div className="progress">
                         <div className="indeterminate"></div>
@@ -129,12 +137,6 @@ function Menu(){
                         {menu.map((category,id)=>{return <FoodCards key={id} menu={category} addItem={addItem} removeItem={removeItem}/>})}
                     </div>
                 }
-                {
-                localStorage.getItem("jwt")===null?
-                    <button className="" onClick={history.push('signin')}>SignIn To Order</button>:
-                    <button className="" onClick={placeOrder}>Order Now!</button>
-                }
-            
         </div>
     )
 }

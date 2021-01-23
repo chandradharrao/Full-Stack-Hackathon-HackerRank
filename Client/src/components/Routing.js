@@ -1,6 +1,6 @@
 import {useEffect,useContext} from 'react';
 import {Route,Switch,useHistory} from 'react-router-dom';
-import Menu from './Menu';
+import Menu from './Menu/Menu';
 import SuccessPage from './Success/SuccessPage'
 import Payment from "./Checkout/Payment";
 import {UserDetailsContext} from "../App"

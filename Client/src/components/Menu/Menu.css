@@ -1,0 +1,22 @@
+.greet{
+    margin: 0.2rem 3rem 0rem 3rem;
+    background-color: rgba(0, 0, 0, 0.459);
+    border-radius: 20px;
+}
+
+.user-greet{
+    text-transform: uppercase;
+    text-emphasis: bold;
+	background: linear-gradient(to right, #ffffff 0%, #a82d83 100%);
+	-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 5rem;
+    text-shadow: white;
+    margin: 0;
+}
+
+.menu{
+    width: auto;
+    border-radius: 20px;
+    margin: 0.2% 2% 2% 2%;
+  }
