@@ -1,12 +1,12 @@
 import {useEffect,useContext} from 'react';
 import {Route,Switch,useHistory} from 'react-router-dom';
 import Menu from './Menu';
-import SuccessPage from './SuccessPage'
-import Payment from "./Payment";
+import SuccessPage from './Success/SuccessPage'
+import Payment from "./Checkout/Payment";
 import {UserDetailsContext} from "../App"
-import SignIn from './SignIn';
-import RegForm from './RegForm';
-import Profile from './Profile';
+import SignIn from './Auth/Login/SignIn';
+import RegForm from './Auth/Registration/RegForm';
+import Profile from './Profile/Profile';
 
 //render component based on the nav link
 function Routing(){

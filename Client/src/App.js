@@ -1,5 +1,5 @@
 import {BrowserRouter} from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Routing from './components/Routing';
 //import the reducer function and the state
 import {UserDetailsState,UserDetailsReducer} from "./reducers/userDetailsReducer"

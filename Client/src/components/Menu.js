@@ -120,9 +120,7 @@ function Menu(){
     //change to checkbox from select/option
     //refer to this for UI: https://www.youtube.com/watch?v=oy9TEteCXdU&ab_channel=TheNetNinja
     return(
-        <div>
-            <h2 className="menu-heading">Today's Menu</h2>
-            
+        <div>            
                 {menu.length === 0?
                     <div className="progress">
                         <div className="indeterminate"></div>
@@ -133,8 +131,9 @@ function Menu(){
                 }
                 {
                 localStorage.getItem("jwt")===null?
-                    <div className="waves-effect waves-light btn" onClick={history.push('signin')}>SignIn To Order</div>:
-                    <div className="waves-effect waves-light btn" onClick={placeOrder}>Order Now!</div>}
+                    <button className="" onClick={history.push('signin')}>SignIn To Order</button>:
+                    <button className="" onClick={placeOrder}>Order Now!</button>
+                }
             
         </div>
     )

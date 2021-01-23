@@ -7,22 +7,30 @@ function FoodItem(props) {
         <div className='foodItemContainer'>
           <figure className='games__item__pic-wrap' price={"₹"+props.price}>
             <img
-              className='games__item__img'
+              className='food-item-img'
               src={props.src}
             />
           </figure>
-          <div className='games__item__info'>
-            <h5 className='games__item__text'>{props.text}</h5>
-            <div>
-            <button onClick={(event) => {
-              event.preventDefault();
-              props.removeItem(props);
-              }}>-</button>
-            &nbsp;{props.count}&nbsp;
-            <button onClick={(event) => {
-              event.preventDefault();
-              props.addItem(props);
-              }}>+</button>
+          <div className='food-item-info'>
+            <h5 className='food-item-name'>{props.text}</h5>
+            <div className="count-container">
+              {props.count > 0? <>
+                  <button className="count neg" onClick={(event) => {
+                    event.preventDefault();
+                    props.removeItem(props);
+                    }}>-</button>
+                  <input className="count-val" type="text" value={props.count}/>
+                  <button className="count pos" onClick={(event) => {
+                    event.preventDefault();
+                    props.addItem(props);
+                    }}>+</button></>
+              :
+              <button className="add-cart" onClick={(event) => {
+                event.preventDefault();
+                props.addItem(props);
+                }}>Add To Cart</button>
+              }
+              
             </div>
             <p>{props.description}</p>
           </div>

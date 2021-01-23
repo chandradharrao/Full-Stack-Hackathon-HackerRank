@@ -1,6 +1,5 @@
 import {useContext} from 'react';
-import { UserDetailsContext } from '../App';
-import '../App.css';
+import { UserDetailsContext } from '../../App';
 
 function Profile(){
     const {state,dispatch} = useContext(UserDetailsContext);

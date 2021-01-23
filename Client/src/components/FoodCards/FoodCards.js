@@ -23,9 +23,7 @@ function FoodCards(props) {
   return (
     <div className='foodMenu'>      
       <h3 className="menu-category">{props.menu.category}</h3>
-      <div >      
-          <ul className='foodContainer'>{map}</ul>
-      </div>
+      <ul className='foodContainer'>{map}</ul>
     </div>
   )
 }

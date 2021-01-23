@@ -3,7 +3,7 @@ import {useHistory,Link} from 'react-router-dom'
 import PreviewForm from './PreviewForm';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { UserDetailsContext } from '../App';
+import { UserDetailsContext } from '../../../App';
 import "./RegForm.css"
 toast.configure();
 
@@ -380,7 +380,7 @@ function RegForm(){
                     <PreviewForm previewData={[name,orgName,empID,mobNo,email,password,localImgUrl]}/>
                 </div>
                 <div className="regform-content-right">
-                    <form onSubmit={formValidation}>
+                    <form>
                         <h1 className="register">Register Now!</h1>
                         <div className="input-field">
                             <input className="reg" required={true} type="text" value={name} placeholder="Name" onChange={(event)=>onChangeHandler(event)} id="name-input"/>
@@ -407,7 +407,7 @@ function RegForm(){
                         <div>
                             <input className="reg" className="upload" required={true} type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
                         </div>
-                        <input className="reg" className='submit' type='submit' value="SIGN UP"></input>
+                        <input className="reg" className='submit' onClick={formValidation} value="SIGN UP"></input>
                         <br/> <br/>
                         <Link  className="already" to="/signin">Already Have an account?</Link>
                     </form>

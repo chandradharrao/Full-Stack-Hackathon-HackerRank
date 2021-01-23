@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import {useContext} from 'react';
-import { UserDetailsContext } from '../App';
+import { UserDetailsContext } from '../../App';
 import "./Navbar.css"
 
 function Navbar(){
