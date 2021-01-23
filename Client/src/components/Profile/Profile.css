@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans);
+
+.profile-container{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    height:  80vh;
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.7);
+    border-radius: 40px;
+}
+
+.profile-wrapper{
+    margin-top: 5vh;
+    width: auto;
+    position: relative;
+    border-radius: 40px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;   
+}
+
+.profile-card{
+    background: rgba(128, 128, 128, 0.767);
+    border-radius: 40px 0 0 40px;
+    position: relative;
+    height: 100%;
+}
+
+.profile-data{
+    font-size: 1.426vw;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+.recent-card{
+    background-color: #f4f4f4e7;
+    border-radius: 0 40px 40px 0;
+    position: relative;
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.profile-header{
+    background-color: rgba(0, 0, 0, 0.692);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 40px 0 0 0;
+}
+
+.profile-img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    margin: auto;
+    padding: 3%;
+}
+
+#profile-name{
+    font-size: 1.8vw;
+}
