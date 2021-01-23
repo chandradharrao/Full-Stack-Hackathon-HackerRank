@@ -4,6 +4,7 @@ import PreviewForm from './PreviewForm';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { UserDetailsContext } from '../App';
+import "./RegForm.css"
 toast.configure();
 
 function RegForm(){
@@ -167,7 +168,7 @@ function RegForm(){
             setLoad(<div className="progress">
                         <div className="indeterminate"></div>
                     </div>)
-            fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload",{
+            fetch("https://api.cloudinary.com/v1_1/chandracloudinarystorage123/image/upload",{
                 method:"POST",
                 body:fd
             }).then(res=>res.json()).then(data=>{
@@ -372,47 +373,47 @@ function RegForm(){
     }
 
     return(
-        <div className="registration">
         <div className="container-registration">
             {load}
-            <form className="registration-form">
-                <h1>Registration Form</h1>
-                <div className="input-field">
-                    <input type="text" value={name} placeholder="Name" onChange={(event)=>onChangeHandler(event)} id="name-input"/>
+            <div className="regWrapper">
+                <div className='regform-content-left'>
+                    <PreviewForm previewData={[name,orgName,empID,mobNo,email,password,localImgUrl]}/>
                 </div>
-                <div className="input-field">
-                    <input type="text" value={orgName} placeholder="Organization Name" onChange={(event)=>onChangeHandler(event)} id="org-input"/>
+                <div className="regform-content-right">
+                    <form onSubmit={formValidation}>
+                        <h1 className="register">Register Now!</h1>
+                        <div className="input-field">
+                            <input className="reg" required={true} type="text" value={name} placeholder="Name" onChange={(event)=>onChangeHandler(event)} id="name-input"/>
+                        </div>
+                        <div className="input-field">
+                            <input className="reg" required={true} type="text" value={orgName} placeholder="Organization Name" onChange={(event)=>onChangeHandler(event)} id="org-input"/>
+                        </div>
+                        <div className="input-field">
+                            <input className="reg" required={true} type="text" value={empID} placeholder="Employee ID" onChange={(event)=>onChangeHandler(event)} id="empid-input"/>
+                        </div>
+                        <div className="input-field">
+                            <input className="reg" required={true} type="text" value={mobNo} placeholder="Mobile Number" onChange={(event)=>onChangeHandler(event)} id="mobno-input"/>
+                        </div>
+                        <div className="input-field">
+                            <input className="reg" required={true} type="text" value={email} placeholder="Email" onChange={(event)=>onChangeHandler(event)} id="email-input"/>
+                        </div>
+                        <div className="input-field">
+                            <input className="reg" required={true} type="text" type='password' value={password} placeholder="Password" onChange={(event)=>onChangeHandler(event)} id="pass-input"/>
+                        </div>
+                        <div className="input-field">
+                            <input className="reg" required={true} type="text" type='password' value={confirmPassword} placeholder="Confirm Password" onChange={(event)=>onChangeHandler(event)} id="confirm-pass-input"/>
+                        </div>
+                        Upload ID Card
+                        <div>
+                            <input className="reg" className="upload" required={true} type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
+                        </div>
+                        <input className="reg" className='submit' type='submit' value="SIGN UP"></input>
+                        <br/> <br/>
+                        <Link  className="already" to="/signin">Already Have an account?</Link>
+                    </form>
                 </div>
-                <div className="input-field">
-                    <input type="text" value={empID} placeholder="Employee ID" onChange={(event)=>onChangeHandler(event)} id="empid-input"/>
-                </div>
-                <div className="input-field">
-                    
-                </div>
-                <div className="input-field">
-                    <input type="text" value={mobNo} placeholder="Mobile Number" onChange={(event)=>onChangeHandler(event)} id="mobno-input"/>
-                </div>
-                <div className="input-field">
-                    <input type="text" value={email} placeholder="Email" onChange={(event)=>onChangeHandler(event)} id="email-input"/>
-                </div>
-                <div className="input-field">
-                    <input type="text" value={password} placeholder="Password" onChange={(event)=>onChangeHandler(event)} id="pass-input"/>
-                </div>
-                <div className="input-field">
-                    <input type="text" value={confirmPassword} placeholder="Confirm Password" onChange={(event)=>onChangeHandler(event)} id="confirm-pass-input"/>
-                </div>
-                <div>Upload ID Card</div>
-                <div className="btn">
-                    <input type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
-                </div>
-                <p></p>
-                <div className="waves-effect waves-light btn" onClick={formValidation}>Submit</div>
-                <p></p>
-            </form>
-                <PreviewForm previewData={[name,orgName,empID,mobNo,email,password,localImgUrl]}/>
-                <p className="footer-acc"><Link to="/signin">Already Have an account?</Link></p>
-        </div>  
-        </div>  
+            </div>
+        </div>          
     )
 }
 

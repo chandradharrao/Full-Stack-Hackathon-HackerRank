@@ -2,6 +2,7 @@ import {useState,useContext} from 'react';
 import {Link,useHistory} from 'react-router-dom';
 import {UserDetailsContext} from "../App"
 import { toast } from 'react-toastify';
+import "./Signin.css"
 //import 'react-toastify/dist/ReactToastify.css'
 toast.configure();
 
@@ -92,26 +93,32 @@ function SignIn(){
     return(
         <div className="container-login">
             {load}
-            <h2>Login</h2>
-            <form className="login-form">
-                &nbsp;
-                <div className="input-field">
-                    <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Employee ID"/>
+            <div className="loginWrapper">
+                <div className='form-content-left'>
+                    <img className='form-img' src='/cafeLogo.jpg'/>
                 </div>
-                <div className="input-field">
-                    <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password" placeholder="Password"/>
+                <div className="form-content-right">
+                    <form>
+                        <h1 className="login">Login</h1>
+                        <div className="input-field">
+                            <input type="text" value ={username} onChange={(event)=>{onChangeHandler(event)}} name="username" placeholder="Employee ID"/>
+                        </div>
+                        <div className="input-field">
+                            <input type="password" value={password} onChange={(event)=>{onChangeHandler(event)}} name="password" placeholder="Password"/>
+                        </div>
+                        <div className="input-field">
+                            <button className="submit" onClick={(event)=>onClickHandler(event)}>SignIn</button>
+                        </div>
+                        <br/>
+                        
+                        <span className="remember">Remember Me</span> <br/>
+                        <input className="flipswitch" type="checkbox" checked={rem} onChange={(e)=>rememebrMeFunc(e)}/>
+                        <br/> <br/>
+                        <Link className="already" to="/signup">Dont have an account?</Link>
+                       
+                    </form>
                 </div>
-                <div className="input-field">
-                    <button className="btn" onClick={(event)=>onClickHandler(event)}>SignIn</button>
-                </div>
-                <p>
-                    <label>
-                        <input type="checkbox" checked={rem} onChange={(e)=>rememebrMeFunc(e)}/>
-                        <span>Rememebr me</span>
-                    </label>
-                </p>
-                <Link to="/signup">Dont have an account?</Link>
-            </form>
+            </div>
         </div> 
     )
 }

@@ -2,7 +2,7 @@
 //req.header.authuriation:"Bearer  __token__"; if logged in else null
 //we need to extract the token
 const jwt = require("jsonwebtoken");
-const signature = 'iwillwinthehackathon100percent';
+const signature = process.env.JWT_SECRET;
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 

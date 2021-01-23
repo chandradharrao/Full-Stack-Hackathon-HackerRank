@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
 import {useContext} from 'react';
 import { UserDetailsContext } from '../App';
+import "./Navbar.css"
 
 function Navbar(){
   //grab the dispatch and state from the context
@@ -11,29 +12,27 @@ function Navbar(){
     if(state != null){
       //if he is signed in
       return [
-        <li key="1"><Link to="/menu">What's Cooking Today?</Link></li>,
-        <li key="3"><Link to="/profile">Profile</Link></li>,
-        <li key="2" onClick={()=>{dispatch({type:"DEL_USER_DETAILS"})}}><Link to="/signin">Logout</Link></li>
+        <li className='nav-item'key="1"><Link className='nav-links' to="/menu">What's Cooking Today?</Link></li>,
+        <li className='nav-item'key="3"><Link className='nav-links' to="/profile">Profile</Link></li>,
+        <li className='nav-item'key="2" onClick={()=>{dispatch({type:"DEL_USER_DETAILS"})}}><Link className='nav-links' to="/signin">Logout</Link></li>
       ]
     }else{
       //if not signed in
       return [
-        <li key="1"><Link to="/signin">Sign In</Link></li>,
-        <li key="2"><Link to="/signup">Register</Link></li>
+        <li className='nav-item'key="1"><Link className='nav-links' to="/signin">Sign In</Link></li>,
+        <li className='nav-item'key="2"><Link className='nav-links' to="/signup">Register</Link></li>
       ]
     }
   }
 
   return(
-    <nav>
-      <div className="nav-wrapper red darken-3">
-        <div className="navbar">
-            <Link to={state===null?"/signin":"/menu"} className="brand-logo">Office Cafe</Link>
-            <ul className="right">
+    <nav className="navbar">
+        <div className="navbar-container">
+            <Link className="navbar-logo" to={state===null?"/signin":"/menu"}>Office Cafe</Link>
+            <ul className='nav-menu'>
               {renderLinks()}
             </ul>
         </div>
-      </div>
     </nav>
     )
 }

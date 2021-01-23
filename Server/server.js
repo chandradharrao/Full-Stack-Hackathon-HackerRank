@@ -2,16 +2,15 @@
 const express = require("express");
 const PORT = 8080;
 const app = express();
+require('dotenv').config();
 //const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const MONGOURI = "PLACE_YOUR_URI";
 
 //connect to db
-mongoose.connect(MONGOURI,{ useUnifiedTopology: true ,useNewUrlParser: true ,useCreateIndex:true}).then(()=>{
-    console.log("Successfull connection with mongodb...")
-}).catch(err=>{
-    console.log("Mongodb connection failed " + err);
-});
+mongoose.connect(process.env.MONGO,{useNewUrlParser: true ,useUnifiedTopology: true, useCreateIndex: true})
+  .then(() => console.log('Database mongodb connected'))
+  .catch(err => console.log(err));
 
 //middlewear to parse json from body
 app.use(express.json());
