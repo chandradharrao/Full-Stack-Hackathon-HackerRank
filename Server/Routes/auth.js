@@ -92,7 +92,7 @@ router.post('/login',(req,res)=>{
     User.findOne({empID:username}).then(dbUser=>{
         //if user not present
         if(!dbUser){
-            res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password"})
+            res.status(422).json({error:"Incorrect employee ID or password",message:"Create new account or Enter valid employee ID and password"})
         }else{
             //compare password of user present in db and user logging in
             bcrypt.compare(password,dbUser.password).then((match)=>{
@@ -119,7 +119,7 @@ router.post('/login',(req,res)=>{
                         }
                     })
                 }else{
-                    res.status(422).json({error:"Incorrect email or password",message:"Create new account or Enter valid email and password",success:false,user:null})
+                    res.status(422).json({error:"Incorrect employee ID or password",message:"Create new account or Enter valid employee ID and password",success:false,user:null})
                 }
             }).catch(err=>{console.log(err);res.json({error:"Server is busy at the moment...",user:null})})
         }
