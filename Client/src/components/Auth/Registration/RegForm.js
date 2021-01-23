@@ -181,7 +181,10 @@ function RegForm(){
         })
     }
 
-    function formValidation(){
+    function formValidation(event){
+        //prevent form submission
+        event.preventDefault()
+
         //temp variable to store different errors associated with each input field
         let temp = {
             name:{},
@@ -223,8 +226,12 @@ function RegForm(){
             for(const prop in copyData){
                 //console.log(typeof prop)
                 if(copyData[prop] === "" || copyData[prop] === defaultIMG){
-                    //attach error to emptyField property
-                    temp[prop].emptyField = `${prop} is required`;
+                    if(prop !== "confirmPassword")
+                        //attach error to emptyField property
+                        temp[prop].emptyField = `${prop} is required`;
+                    else{
+                        temp["password"].emptyField = `conform your password please`
+                    }
                 }
             }
             //console.log("temp var " + JSON.stringify(temp));
@@ -407,7 +414,7 @@ function RegForm(){
                         <div>
                             <input className="reg" className="upload" required={true} type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
                         </div>
-                        <input className="reg" className='submit' onClick={formValidation} value="SIGN UP"></input>
+                        <input type = "button" className="reg" className='submit' onClick={(event)=>formValidation(event)} value="SIGN UP"></input>
                         <br/> <br/>
                         <Link  className="already" to="/signin">Already Have an account?</Link>
                     </form>
