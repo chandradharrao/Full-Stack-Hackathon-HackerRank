@@ -1,4 +1,8 @@
-function PaymentMode(){
+import { useParams } from "react-router-dom";
+
+function PaymentMode(props){
+    alert(props.params)
+    const billAmnt = props.params.totalprice;
     return(
         <div className="container">
             <div className="card">
@@ -6,7 +10,7 @@ function PaymentMode(){
                 <div className="card">
 
                     <div className="card-content white text">
-
+                        <h1>Total Cost : {billAmnt}</h1>
                         <h1 className="card-title" style={{fontWeight:"bold"}}>Payment Methods : </h1>
                         <br></br>
                         <div className="waves-effect waves-light btn"><i className="material-icons left">android</i>Google Pay</div>
@@ -28,6 +32,7 @@ function PaymentMode(){
                         <div className="input-field"><input id = "zip" type="text"/></div>
 
                         <div className="waves-effect waves-light btn">Pay</div>
+                        {/*add back button over here*/}
                     </div>
                 </div>
             </div>

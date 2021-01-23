@@ -43,7 +43,7 @@ function Routing(){
             <Route path = '/signup' component={RegForm}/>
             <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
             <Route path = "/menu" component={Menu}/>
-            <Route path = "/payment" component={Payment}/>
+            <Route path = "/payment/:totalprice" component={Payment}/>
             <Route path = "/profile" component={Profile}/>
         </Switch>
     )
