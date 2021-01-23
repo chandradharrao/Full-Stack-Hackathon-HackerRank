@@ -1,10 +1,8 @@
-import {useContext} from 'react';
-import { UserDetailsContext } from '../../App';
+import {useState} from 'react';
 import "./Profile.css"
 
 function Profile(){
-    const {state,dispatch} = useContext(UserDetailsContext);
-    
+    const [state] = useState(JSON.parse(localStorage.getItem("user")))
     return(
         <div className = "profile-container">
             <div className="profile-wrapper">

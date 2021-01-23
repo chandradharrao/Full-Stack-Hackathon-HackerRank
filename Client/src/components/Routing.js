@@ -33,7 +33,7 @@ function Routing(){
         }
         else{
         //redirect to menu
-        history.push('/menu')
+        //history.push('/menu')
         }
     }, [])
 
@@ -43,7 +43,7 @@ function Routing(){
             <Route path = '/signup' component={RegForm}/>
             <Route path = '/successpage/:id/:empid' component={SuccessPage}/>
             <Route path = "/menu" component={Menu}/>
-            <Route path = "/payment/:totalprice" component={Payment}/>
+            <Route path = "/payment/:amount" component={Payment}/>
             <Route path = "/profile" component={Profile}/>
         </Switch>
     )

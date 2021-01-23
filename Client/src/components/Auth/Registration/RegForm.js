@@ -384,7 +384,7 @@ function RegForm(){
             {load}
             <div className="regWrapper">
                 <div className='regform-content-left'>
-                    <PreviewForm previewData={[name,orgName,empID,mobNo,email,password,localImgUrl]}/>
+                    <PreviewForm previewData={[name,orgName,empID,mobNo,email,localImgUrl]}/>
                 </div>
                 <div className="regform-content-right">
                     <form>

@@ -25,7 +25,8 @@ function Menu(){
                 cost += menu[i].items[j].quantity * menu[i].items[j].price;
             }
         }
-        alert("The cost is " + cost);
+       //alert("The cost is " + cost);
+       history.push('/payment/' + cost);
         /*
         console.log(fd);
         //post data to server
@@ -133,7 +134,7 @@ function Menu(){
         <div>       
             {localStorage.getItem("jwt")===null? history.push('signin'):
                 <div className="greet">
-                    <h1 className="user-greet">Welcome!!</h1>
+                    <h1 className="user-greet">Welcome {JSON.parse(localStorage.getItem("user")).name}</h1>
                 </div>
             }     
             {showCheckout?

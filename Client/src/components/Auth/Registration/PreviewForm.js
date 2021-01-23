@@ -16,7 +16,7 @@ function PreviewForm({previewData}){
         <div className="preview-form">
             <h1 className="preview">Account Preview</h1>
             <div>
-                {<img src={previewData.length===0?"./idCard.png":previewData[keys.length]} alt="Employee id Card" style={{height:"128px",width:"128px",marginLeft:"100px"}}></img>}
+                {<img src={previewData.length===0?"/idCard.png":previewData[keys.length]} alt="Employee id Card" style={{height:"128px",width:"128px",marginLeft:"100px"}}></img>}
             </div>
                 {previewData.length === 0?<div>No data to be displayed</div>:<div className="prev-list">{keys.map((theKey,indx)=>{
                     return <h5 className="collection-item" key={indx}>{theKey} : <span>{console.log(theKey)}{previewData[indx]}</span></h5>
