@@ -8,7 +8,7 @@ import "./Menu.css";
 function Menu(){
     const history = useHistory();
     const [order,setOrder] = useState([]);
-
+/*
     function onChangeHandler(event){
         let temp = order.map((item)=>{
             return item
@@ -16,14 +16,17 @@ function Menu(){
         temp.push(event.target.value);
         setOrder(temp);
     }
-
+*/
     function placeOrder(){
-        let fd = {name:null,price:null};
-        for(let i = 0;i<order.length;i++){
-            let temp = order[i].split("&");
-            fd.name = temp[0];
-            fd.price = temp[1];
+        //let fd = {name:null,price:null};
+        let cost = 0;
+        for(let i = 0;i<menu.length;i++){
+            for(let j = 0; j<menu[i].items.length; j++){
+                cost += menu[i].items[j].quantity * menu[i].items[j].price;
+            }
         }
+        alert("The cost is " + cost);
+        /*
         console.log(fd);
         //post data to server
         fetch('/book',{
@@ -40,10 +43,11 @@ function Menu(){
             else{
                 //make toast
             }
-        })
+        })*/
     }
 
     const [menu,setMenu] = useState([]);
+    const [showCheckout, setCheckout] = useState(false);
 
     //get the menu from server
     useEffect(()=>{
@@ -67,8 +71,11 @@ function Menu(){
         if(category >= 0){
             const item = menu[category].items.findIndex(p => p.name === product.text);
             if(item >= 0){
+                //let copy = menu;
                 menu[category].items[item].quantity += 1;
                 setMenu(menu);
+                setCheckout(true);
+                
                 const cartIndex = order.findIndex(p => p.name === product.text);
                 if(cartIndex >= 0){
                     const cart = order.slice();
@@ -82,6 +89,7 @@ function Menu(){
                     newItem.quantity = 1;
                     setOrder([...order, newItem])
                 }
+                
             }
             else{
                 console.log("Invalid Product"); // A product which is not in the menu has been passed (possibly by manually editing the webpage)
@@ -98,8 +106,9 @@ function Menu(){
             const item = menu[category].items.findIndex(p => p.name === product.text);
             if(item >= 0){
                 if(menu[category].items[item].quantity){
-                    menu[category].items[item].quantity -= 1;
+                    (menu[category].items[item].quantity -= 1) <= 0? setCheckout(false): setCheckout(true);
                     setMenu(menu);
+                    
                     const cartIndex = order.findIndex(p => p.name === product.text);
                     if(cartIndex >= 0){
                         const cart = order.slice();
@@ -108,6 +117,7 @@ function Menu(){
                         cart[cartIndex] = updatedProduct
                         setOrder(cart)
                     }
+                    
                 } 
             }
             else{
@@ -126,7 +136,7 @@ function Menu(){
                     <h1 className="user-greet">Welcome!!</h1>
                 </div>
             }     
-            {order.length > 0?
+            {showCheckout?
                     <button className="checkout" onClick={placeOrder}>Order Now!</button> : <></>
                 }
                 {menu.length === 0?
