@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "office cafeteria backend",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "heroku-postbuild": "cd Client && yarn install && yarn run build"
   },
   "author": "Chandradhar Rao, Dhruval PB",
