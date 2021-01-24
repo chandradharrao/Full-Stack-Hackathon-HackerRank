@@ -4,7 +4,8 @@
   "description": "office cafeteria backend",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "npm run build"
   },
   "author": "Chandradhar Rao, Dhruval PB",
   "license": "ISC",
