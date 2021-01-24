@@ -30,9 +30,10 @@ mongoose.connect(process.env.MONGO,{useNewUrlParser: true ,useUnifiedTopology: t
 require('./Database/Models/user');
 
 const auth = require('./Routes/auth');
+const menu = require("./Routes/menu")
 
-app.use('/api/', auth);
-app.use(require("./Routes/menu"));
+app.use('/api', auth);
+app.use('/api/menu', menu);
 
 app.listen(PORT,()=>{
     console.log("Listening to " + PORT + ".....");
