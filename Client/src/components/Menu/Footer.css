@@ -18,11 +18,11 @@
       background-color:aliceblue;
       text-align: center;
       cursor: pointer;
-      font-size: 18px;
+      font-weight: bold;
   }
 
   .price {
       font-size: large;
       font-weight: bold;
-      color:aliceblue
+      color:black;
   }
