@@ -65,7 +65,7 @@ function RegForm(){
                     data.password = password;
                     
                     //post data to server
-                    fetch('/api/signup',{
+                    fetch('/signup',{
                         method:"POST",
                         headers:{
                             'Accept': 'application/json',

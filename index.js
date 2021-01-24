@@ -32,8 +32,8 @@ require('./Database/Models/user');
 const auth = require('./Routes/auth');
 const menu = require("./Routes/menu")
 
-app.use('/api/', auth);
-app.use('/api/menu', menu);
+app.use(auth);
+app.use(menu);
 
 app.listen(PORT,()=>{
     console.log("Listening to " + PORT + ".....");

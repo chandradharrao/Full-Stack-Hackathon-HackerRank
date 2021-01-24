@@ -28,7 +28,7 @@ function Menu(){
     //get the menu from server
     useEffect(()=>{
         console.log("Called once");
-        fetch("/api/menu").then(res=>res.json()).then((items)=>{
+        fetch("/menu").then(res=>res.json()).then((items)=>{
             let temp = [];
             console.log("Items:::::");
             console.log(items);

@@ -56,7 +56,7 @@ function SignIn(){
         };
         console.log("Trying to fetch...")
         //debugger;
-        fetch("/api/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
+        fetch("/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
             console.log("Made fetch req and recieved res")
             //debugger;
             //loading
