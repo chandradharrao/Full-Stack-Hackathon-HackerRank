@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "office cafeteria backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "heroku-postbuild": "cd Client && yarn install && yarn run build"
