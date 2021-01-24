@@ -1,6 +1,5 @@
-.cart-footer{
-    margin-top: 1rem;
-    padding: 1rem;
+.cart-footer{   
+    padding: 0.2rem;
     background-color: rgb(231, 195, 77);
     position: fixed;
     bottom: 0;
@@ -11,7 +10,7 @@
 
   .checkout-btn{
       position: relative;
-      left:70%;
+      left:80%;
       width: 10%;
       border: none;
       outline: 0;
@@ -19,10 +18,33 @@
       text-align: center;
       cursor: pointer;
       font-weight: bold;
+      
   }
 
   .price {
       font-size: large;
       font-weight: bold;
       color:black;
+      margin-left: 2%;
+  }
+
+  @media only screen and (max-width: 1800px) {
+    .checkout-btn{
+        left: 70%;
+        width: 15%;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    .checkout-btn{
+        left: 63%;
+        width: 17%;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .checkout-btn{
+        left: 60%;
+        width: 20%;
+    }
   }

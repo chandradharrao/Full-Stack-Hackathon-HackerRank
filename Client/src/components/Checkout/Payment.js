@@ -19,6 +19,16 @@ function PaymentMode(){
         history.push("/menu");
     }
 
+    function now(){
+        console.log("Now:   ")
+        var date = new Date();
+        //d += 30;
+        var d = new Date(date.getTime() + 30*60000);
+        var h = d.getHours();
+        var m = d.getMinutes();
+        return h.toString() + ":" + m.toString();
+    }
+
     return(
         <div className="payment-card">
             <div className="payment-holder">
@@ -34,8 +44,8 @@ function PaymentMode(){
                 <img className="pay-img" src="/visa.png" alt="visa-pay"></img>
             </div>
             <div className="choose-time">
-                <p>Choose checkout time : </p>
-                <input className="time" type="time" value="13:30"></input>
+                <p>Choose checkout time (Minimum 30 mins for prep)</p>
+                <input className="time" type="time" defaultValue={now()}></input>
             </div>
             <h3 className="amnt">Bill : {<span>&#8377;</span>}{cost}</h3>
             <input className="ckt-bttn" type="button" value="Exit" onClick={onExit}></input>

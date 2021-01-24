@@ -9,12 +9,12 @@ function SuccessPage(){
     return(
         <div className="card">
             <div className="image-container">
-                <img src = "https://res.cloudinary.com/chandracloudinarystorage123/image/upload/v1611199154/success_hl3vkb.png" alt="success" style={{height:"128px",width:"128px"}}></img>
+                <img src = "https://res.cloudinary.com/chandracloudinarystorage123/image/upload/v1611199154/success_hl3vkb.png" alt="success" style={{height:"45%",width:"45%"}}></img>
             </div>
             <h1 className="title">Success</h1> 
             <h3 className="reg-msg">Thank you for Registering</h3>
-            <h3 className="reg-msg">Unique Registration ID <span className="reg-id">{id}</span></h3>
-            <h3 className="reg-msg">Hurry Up!</h3>
+            <h3 className="reg-msg">Your Registration ID <span className="reg-id">{id}</span></h3>
+            <h3 className="reg-msg">Welcome aboard!!</h3>
             <input type="button" className="btn" value="Place Order" onClick={()=>history.push("/menu")}></input>
         </div>
     )

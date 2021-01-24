@@ -1,8 +1,7 @@
 .card{
-    max-width: 30%;
+    max-width: 35%;
     height: 82vh; /*The height of divs are the height of its content,hence change it wrt the view port*/
     margin-top: 2%;
-    margin-bottom: 10%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -20,6 +19,7 @@
 
   .reg-msg {
       font-weight: bolder;
+      font-size: 2.3vh;
       color:rgb(206, 160, 44);
       padding:1%;
   }
@@ -38,7 +38,7 @@
       background-color:darkseagreen;
       text-align: center;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 100%;
       width: 30%;
       margin: 0px;
   }

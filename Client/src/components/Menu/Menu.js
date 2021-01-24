@@ -151,7 +151,7 @@ function Menu(){
         <div>       
             {localStorage.getItem("jwt")===null? history.push('signin'):
                 <div className="greet">
-                    <h1 className="user-greet">Welcome {JSON.parse(localStorage.getItem("user")).name}</h1>
+                    <h1 className="user-greet">Today's Menu</h1>
                 </div>
             }     
             {showCheckout?<Footer menu={menu} orderFun = {placeOrder}/> : <></>}

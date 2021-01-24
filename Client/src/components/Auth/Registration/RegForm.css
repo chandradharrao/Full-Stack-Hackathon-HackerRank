@@ -34,8 +34,8 @@
 }
 
 .collection-text {
-    border:#ccc;
-    border-style: dotted;
+    text-decoration: underline;
+    color: yellow;
 }
 .collection-text:empty{
     display: none;

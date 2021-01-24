@@ -49,8 +49,8 @@
 }
 
 .profile-img{
-    width: 250px;
-    height: 250px;
+    width: 180px;
+    height: 180px;
     margin: auto;
     padding: 3%;
 }
@@ -62,4 +62,14 @@
 
 #profile-name{
     font-size: 1.8vw;
+}
+
+.detail{
+    text-decoration: underline;
+    color: yellow;
+}
+
+#coming-soon{
+    color: green;
+    font-size: 20vh;
 }

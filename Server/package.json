@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "author": "chandradhar rao",
+  "author": "Chandradhar Rao, Dhruval PB",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

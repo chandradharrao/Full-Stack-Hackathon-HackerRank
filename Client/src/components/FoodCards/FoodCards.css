@@ -25,7 +25,7 @@ h1 {
 
 .foodItem {
   display: flex; 
-  width: 400px;
+  width: 350px;
   margin: 0.8rem;
   border-radius: 10px;  
 }
@@ -157,6 +157,6 @@ h1 {
     margin-bottom: 2rem;
   }
   .foodItem {
-    width: 100%;
+    width: 45%;
   }
 }
