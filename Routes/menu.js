@@ -5,7 +5,7 @@ const verifyUser = require("../Middlewears/verifyUser");
 const menu = require("../Database/Assets/NewMenuItems.json");
 
 //supply the menu : menu is not protected resource but booking is
-router.get("/",(req,res)=>{
+router.get("/menu",(req,res)=>{
     res.status(200).json({menu:menu});
 })
 
