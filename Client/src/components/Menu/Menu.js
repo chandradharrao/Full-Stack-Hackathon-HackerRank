@@ -10,15 +10,7 @@ function Menu(){
     const [order,setOrder] = useState([]);
     const [menu,setMenu] = useState([]);
     const [showCheckout, setCheckout] = useState(false);
-/*
-    function onChangeHandler(event){
-        let temp = order.map((item)=>{
-            return item
-        });
-        temp.push(event.target.value);
-        setOrder(temp);
-    }
-*/
+
     function placeOrder(){
         //let fd = {name:null,price:null};
         let cost = 0;
@@ -31,24 +23,6 @@ function Menu(){
        setTimeout(() => {
         history.push('/payment/' + cost);
        }, 1500);
-        /*
-        console.log(fd);
-        //post data to server
-        fetch('/book',{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization" : "Bearer " + localStorage.getItem("jwt")
-            },body:JSON.stringify(fd)
-        }).then(res=>res.json()).then((data)=>{
-            if(data.success){
-                //redirect to the payment page
-                history.push('/payment')
-            }
-            else{
-                //make toast
-            }
-        })*/
     }
 
     //get the menu from server

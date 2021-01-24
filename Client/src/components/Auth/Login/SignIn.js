@@ -3,6 +3,7 @@ import {Link,useHistory} from 'react-router-dom';
 import {UserDetailsContext} from "../../../App"
 import { toast } from 'react-toastify';
 import "./Signin.css"
+import axios from "axios";
 //import 'react-toastify/dist/ReactToastify.css'
 toast.configure();
 
@@ -55,7 +56,7 @@ function SignIn(){
         };
         console.log("Trying to fetch...")
         //debugger;
-        fetch("/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
+        fetch("/api/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
             console.log("Made fetch req and recieved res")
             //debugger;
             //loading
