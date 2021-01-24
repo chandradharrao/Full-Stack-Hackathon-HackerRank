@@ -1,0 +1,103 @@
+.payment-card {
+    max-width:30%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: auto; /*To center it*/
+    margin-right: auto;
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+.payment-holder {
+    background-color: black;
+    color: aliceblue;
+    padding:1%
+}
+
+.payment-title {
+    font-weight: bold;
+}
+
+.pay-option {
+    display: inline-block;
+}
+
+.pay-img {
+    padding:3%;
+}
+
+.pay-img-holder-google:hover {
+    opacity: 0.7px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pay-img-holder-apple:hover {
+    opacity: 0.7px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pay-img-holder-visa:hover {
+    opacity: 0.7px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pay-img-holder-google{
+    background-color: rgb(243, 152, 152);
+    margin:2%;
+}
+
+.pay-img-holder-apple{
+    background-color: rgb(177, 177, 245);
+    margin:2%;
+}
+
+.pay-img-holder-visa{
+    background-color: rgb(246, 218, 141);
+    margin:2%;
+}
+
+.choose-time{
+    font-weight: bold;
+}
+
+.time{
+    background-color:azure;
+    width: 50%;
+    margin: 0;
+    border:none;
+    outline:none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.amnt {
+    background-color:rgb(162, 224, 162);
+    padding:1%;
+    margin-top: 3%;
+    margin-bottom: 0;
+    margin-left: auto; /*To center it*/
+    margin-right: auto;
+    font-weight: bold;
+    text-align: center;
+    width:30%
+}
+
+.ckt-bttn {
+    background-color:rgb(245, 70, 70);
+    margin-bottom: 1%;
+    margin-top: 2%;
+    width:30%;
+    text-align: center;
+    border-radius: 2%;
+    border-style:groove;
+    font-weight: bold;
+    color:whitesmoke;
+}
+
+.ckt-bttn:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+

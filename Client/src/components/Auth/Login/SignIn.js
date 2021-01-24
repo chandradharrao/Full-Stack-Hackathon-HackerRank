@@ -95,7 +95,7 @@ function SignIn(){
             {load}
             <div className="loginWrapper">
                 <div className='form-content-left'>
-                    <img className='form-img' src='/cafeLogo.jpg'/>
+                    <img className='form-img' src='/cafeLogo.jpg' alt="logo"/>
                 </div>
                 <div className="form-content-right">
                     <form>

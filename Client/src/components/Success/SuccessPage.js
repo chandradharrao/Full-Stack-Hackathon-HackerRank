@@ -1,26 +1,21 @@
-import {useParams} from 'react-router-dom';
+import {useParams,useHistory} from 'react-router-dom';
+import "./Success.css";
 
 function SuccessPage(){
     let params = useParams();
     let id = params.id;
+    let history = useHistory()
 
-    //let URL = 'end point to get user data given id of user' + id;
     return(
-        <div className="container" id="success-container">
-            <div className="card" id="success-card">
-                <div className="card-header" id="success-header">
-                    <img src = "https://res.cloudinary.com/chandracloudinarystorage123/image/upload/v1611199154/success_hl3vkb.png" alt="success"></img>
-                </div>
-                <div className="card-content" id="success-content">
-                    <h3>Success!!</h3>
-                    <h4>Thank you for Registering!!</h4>
-                    <h4 className="reg-id">Registration ID : {id}</h4>
-                    <h4>Please considering placing an order through our app!!</h4>
-                </div>
-                <div className="card-footer">
-                    <img src="https://res.cloudinary.com/chandracloudinarystorage123/image/upload/v1611200881/lunch-box_jtwr0t.png" alt="tasty food"></img>
-                </div>
+        <div className="card">
+            <div className="image-container">
+                <img src = "https://res.cloudinary.com/chandracloudinarystorage123/image/upload/v1611199154/success_hl3vkb.png" alt="success" style={{height:"128px",width:"128px"}}></img>
             </div>
+            <h1 className="title">Success</h1> 
+            <h3 className="reg-msg">Thank you for Registering</h3>
+            <h3 className="reg-msg">Unique Registration ID <span className="reg-id">{id}</span></h3>
+            <h3 className="reg-msg">Hurry Up!</h3>
+            <input type="button" className="btn" value="Place Order" onClick={()=>history.push("/menu")}></input>
         </div>
     )
 }

@@ -27,6 +27,20 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.prev-img {
+    border:#ccc;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+.collection-text {
+    border:#ccc;
+    border-style: dotted;
+}
+.collection-text:empty{
+    display: none;
+}
+
 .registration-form{
     background-color: white;
     border-radius: 0px 20px 20px 0px;

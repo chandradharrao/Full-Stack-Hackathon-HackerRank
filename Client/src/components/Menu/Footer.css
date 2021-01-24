@@ -1,0 +1,28 @@
+.cart-footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(231, 195, 77);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .checkout-btn{
+      position: relative;
+      left:70%;
+      width: 10%;
+      border: none;
+      outline: 0;
+      background-color:aliceblue;
+      text-align: center;
+      cursor: pointer;
+      font-size: 18px;
+  }
+
+  .price {
+      font-size: large;
+      font-weight: bold;
+      color:aliceblue
+  }

@@ -2,12 +2,14 @@ import {useState,useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import FoodCards from "../FoodCards/FoodCards";
 import "./Menu.css";
-
+import Footer from './MenuFooter';
 
 //add quantity feature
 function Menu(){
     const history = useHistory();
     const [order,setOrder] = useState([]);
+    const [menu,setMenu] = useState([]);
+    const [showCheckout, setCheckout] = useState(false);
 /*
     function onChangeHandler(event){
         let temp = order.map((item)=>{
@@ -26,7 +28,9 @@ function Menu(){
             }
         }
        //alert("The cost is " + cost);
-       history.push('/payment/' + cost);
+       setTimeout(() => {
+        history.push('/payment/' + cost);
+       }, 1500);
         /*
         console.log(fd);
         //post data to server
@@ -47,9 +51,6 @@ function Menu(){
         })*/
     }
 
-    const [menu,setMenu] = useState([]);
-    const [showCheckout, setCheckout] = useState(false);
-
     //get the menu from server
     useEffect(()=>{
         console.log("Called once");
@@ -65,6 +66,21 @@ function Menu(){
         })
     },[])
 
+    function updateCheckoutFooter(){
+        let cost = 0;
+        for(let i = 0;i<menu.length;i++){
+            for(let j = 0; j<menu[i].items.length; j++){
+                cost += menu[i].items[j].quantity * menu[i].items[j].price;
+            }
+        }
+        console.log(cost)
+        if(cost > 0){
+            setCheckout(true)
+        }else{
+            setCheckout(false)
+        }
+    }
+
     const addItem = (product)=>{
         //console.log("Added Item: "+product.text);
         //console.log(order)
@@ -75,8 +91,8 @@ function Menu(){
                 //let copy = menu;
                 menu[category].items[item].quantity += 1;
                 setMenu(menu);
-                setCheckout(true);
-                
+                updateCheckoutFooter()
+
                 const cartIndex = order.findIndex(p => p.name === product.text);
                 if(cartIndex >= 0){
                     const cart = order.slice();
@@ -107,8 +123,9 @@ function Menu(){
             const item = menu[category].items.findIndex(p => p.name === product.text);
             if(item >= 0){
                 if(menu[category].items[item].quantity){
-                    (menu[category].items[item].quantity -= 1) <= 0? setCheckout(false): setCheckout(true);
+                    (menu[category].items[item].quantity -= 1) <= 0? console.log(">"):console.log(">");
                     setMenu(menu);
+                    updateCheckoutFooter();
                     
                     const cartIndex = order.findIndex(p => p.name === product.text);
                     if(cartIndex >= 0){
@@ -137,9 +154,7 @@ function Menu(){
                     <h1 className="user-greet">Welcome {JSON.parse(localStorage.getItem("user")).name}</h1>
                 </div>
             }     
-            {showCheckout?
-                    <button className="checkout" onClick={placeOrder}>Order Now!</button> : <></>
-                }
+            {showCheckout?<Footer menu={menu} orderFun = {placeOrder}/> : <></>}
                 {menu.length === 0?
                     <div className="progress">
                         <div className="indeterminate"></div>
