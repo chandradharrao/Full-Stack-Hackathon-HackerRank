@@ -26,6 +26,7 @@ const menu = [
 
 //supply the menu : menu is not protected resource but booking is
 router.get("/menu",(req,res)=>{
+    console.log(req);
     res.status(200).json({menu:menu});
 })
 
