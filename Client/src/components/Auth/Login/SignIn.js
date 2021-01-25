@@ -57,7 +57,7 @@ function SignIn(){
 
                 //store token and user info present in response in local storage
                 localStorage.setItem("jwt",data.token);
-                console.log(data.user);
+                //console.log(data.user);
                 localStorage.setItem("user",JSON.stringify(data.user));
                 console.log("Successfull login.....")
 
