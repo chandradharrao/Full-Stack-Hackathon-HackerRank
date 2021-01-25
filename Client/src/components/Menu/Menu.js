@@ -27,7 +27,10 @@ function Menu(){
 
     //get the menu from server
     useEffect(()=>{
-        fetch("/menu").then(res=>res.json()).then((items)=>{
+        fetch("/menu", {headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+           }}).then(res=>res.json()).then((items)=>{
             let temp = [];
             for(let i = 0; i < items.menu.length; i++){                
                 for(let j = 0; j < items.menu[i].items.length; j++) items.menu[i].items[j].quantity = 0;
