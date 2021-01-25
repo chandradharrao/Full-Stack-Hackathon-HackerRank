@@ -13,13 +13,6 @@ app.use(express.json());
 //const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-  app.use(express.static('Client/build'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/Client/build/index.html'));
-  });
-}
-
 //connect to db
 mongoose.connect(process.env.MONGO,{useNewUrlParser: true ,useUnifiedTopology: true, useCreateIndex: true})
   .then(() => console.log('Database mongodb connected'))
@@ -35,6 +28,13 @@ const menu = require("./Routes/menu")
 
 app.use(auth);
 app.use(menu);
+
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+  app.use(express.static('Client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/Client/build/index.html'));
+  });
+}
 
 app.listen(PORT,()=>{
     console.log("Listening to " + PORT + ".....");

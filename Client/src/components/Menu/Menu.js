@@ -34,8 +34,10 @@ function Menu(){
                 temp.push(items.menu[i]);
             }
             setMenu(temp);
-        }).catch(err => alert(err));
-    },[])
+        }).catch(err => {
+            alert(err);
+            console.log(err);
+        })},[])
 
     function updateCheckoutFooter(){
         let cost = 0;

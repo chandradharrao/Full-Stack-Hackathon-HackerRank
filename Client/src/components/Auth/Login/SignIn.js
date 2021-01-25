@@ -41,7 +41,7 @@ function SignIn(){
                 password
             })
         };
-        console.log("Trying to fetch...")
+        //console.log("Trying to fetch...")
         
         fetch("/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
             //console.log("Made fetch req and recieved res")
