@@ -28,7 +28,7 @@ function Navbar(){
   return(
     <nav className="navbar">
         <div className="navbar-container">
-            <Link className="navbar-logo" to={state===null?"/signin":"/menu"}>Office Cafe</Link>
+            <Link className="navbar-logo" to={state===null?"/signin":"/menu"}><i class="fas fa-mug-hot"></i> Office Cafe</Link>
             <ul className='nav-menu'>
               {renderLinks()}
             </ul>

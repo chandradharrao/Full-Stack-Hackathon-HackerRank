@@ -8,6 +8,10 @@
     z-index: 1;
   }
 
+  .checkout-btn:hover{
+    background-color: rgb(91, 214, 91);
+  }
+
   .checkout-btn{
       position: relative;
       left:80%;
@@ -17,8 +21,7 @@
       background-color:aliceblue;
       text-align: center;
       cursor: pointer;
-      font-weight: bold;
-      
+      font-weight: bold;      
   }
 
   .price {

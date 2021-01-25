@@ -19,10 +19,7 @@ function Menu(){
                 cost += menu[i].items[j].quantity * menu[i].items[j].price;
             }
         }
-       //alert("The cost is " + cost);
-       setTimeout(() => {
         history.push('/payment/' + cost);
-       }, 1500);
     }
 
     //get the menu from server

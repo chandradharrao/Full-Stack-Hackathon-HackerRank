@@ -1,28 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const verifyUser = require("../Middlewears/verifyUser");
-//const menu = require("../Data/Assets/MenuItems.json");
-const menu = [
-    {
-        "category":"South Indian",
-        "items": [
-            {"name":"Masala Dosa" ,"price": "10", "description": "This is a place for describing the food"},
-            {"name":"Puri Sagu","price":"20", "description":"This is a place for describing the food"},
-            {"name":"Masala Idly" ,"price": "10", "description": "This is a place for describing the food"},
-            {"name":"Masala Vada" ,"price": "10", "description": "This is a place for describing the food"},
-            {"name":"Idly" ,"price": "10", "description": "This is a place for describing the food"},
-            {"name":"Vada" ,"price": "10", "description": "This is a place for describing the food"}
-        ]
-    },
-    {
-        "category":"Others",
-        "items": [
-            {"name":"Pav Bhaji","price":"30",  "description":"This is a place for describing the food"},
-            {"name":"Pasta","price":"100",  "description":"This is a place for describing the food"},
-            {"name":"Tea","price":"10",  "description":"This is a place for describing the food"}
-        ] 
-    }
-]
+const menu = require("../Data/Assets/MenuItems.json");
 
 //supply the menu : menu is not protected resource but booking is
 router.get("/menu",(req,res)=>{

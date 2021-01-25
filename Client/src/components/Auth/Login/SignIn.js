@@ -66,9 +66,7 @@ function SignIn(){
                 dispatch({type:"SET_USER_DETAILS",payload:data.user})
                 
                 //navigate user to menu
-                setTimeout(()=>{
-                    history.push('/menu');
-                },1000)
+                history.push('/menu');               
             }else{
                 setLoad(null);
                 //make toast with failure message

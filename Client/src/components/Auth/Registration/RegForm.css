@@ -11,7 +11,7 @@
 
 .regform-content-right {
     border-radius: 0 40px 40px 0;
-    padding: 0 10% 0 10%;
+    padding: 0 10% 1% 10%;
     position: relative;
     background: linear-gradient(90deg, rgb(180, 180, 180) 0%, rgb(255, 255, 255) 100%);
   }
@@ -98,10 +98,20 @@
 .upload{
     width:100%;
     padding: 1;
+    cursor: pointer;
     box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.7);
     background: linear-gradient(
       90deg,
       rgb(39, 248, 255) 0%,
       rgb(75, 170, 248) 100%
     );
+}
+
+.upload:focus{
+    outline: none;
+}
+
+.upload:hover{
+    filter: brightness(125%);
+    transition: all 0.2s ease-out;
 }
