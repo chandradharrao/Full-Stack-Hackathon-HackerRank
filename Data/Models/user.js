@@ -41,4 +41,3 @@ const userSchema = new mongoose.Schema({
 
 //user collection in database
 mongoose.model("User",userSchema);
-
