@@ -44,13 +44,13 @@ function SignIn(){
         console.log("Trying to fetch...")
         
         fetch("/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
-            console.log("Made fetch req and recieved res")
+            //console.log("Made fetch req and recieved res")
             
             //loading
             setLoad(<div className="progress">
                         <div className="indeterminate"></div>
                     </div>)
-            console.log(data);
+            //console.log(data);
             if(data.success){
                 //make a toast with success massage
                 toast.success(data.message);
@@ -59,7 +59,7 @@ function SignIn(){
                 localStorage.setItem("jwt",data.token);
                 //console.log(data.user);
                 localStorage.setItem("user",JSON.stringify(data.user));
-                console.log("Successfull login.....")
+                //console.log("Successfull login.....")
 
                 //only dispatch is allowed to change state by dispatching action
                 //store user data in redux state

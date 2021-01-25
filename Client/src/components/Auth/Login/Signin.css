@@ -41,7 +41,6 @@
     border-radius: 0px 20px 20px 0px;
     padding: 2%;
     height: 80%;
-    opacity: 90%;
     width: 50%;
 }
 
@@ -60,7 +59,6 @@
 
 ::placeholder {
     color: rgb(139, 139, 139);
-    opacity: 1; /* Firefox */
   }
 
 .remember{

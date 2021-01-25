@@ -17,7 +17,7 @@
   }
 
 .regWrapper{
-    margin: 2vw;
+    margin: 1vw;
     width: auto;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
     position: relative;
@@ -46,7 +46,6 @@
     border-radius: 0px 20px 20px 0px;
     padding: 2%;
     height: 80%;
-    opacity: 90%;
     width: 50%;
 }
 
@@ -100,7 +99,6 @@
     width:100%;
     padding: 1;
     box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.7);
-    opacity: 90%;
     background: linear-gradient(
       90deg,
       rgb(39, 248, 255) 0%,
