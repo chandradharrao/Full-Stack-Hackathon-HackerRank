@@ -7,8 +7,7 @@ const User = mongoose.model("User");
 const bcrypt = require('bcryptjs');
 //token
 const jwt = require("jsonwebtoken");
-//signature to generate token
-const signature = 'iwillwinthehackathon100percent';
+const signature = process.env.JWT_SECRET;
 
 router.post("/signup",(req,res)=>{
     console.log("Signup route...");
@@ -31,7 +30,6 @@ router.post("/signup",(req,res)=>{
             const regID = new Date().valueOf().toString();
             console.log("regid created is " + regID);
 
-            console.log("Creating password...")
             //hash password
             bcrypt.hash(password,12).then((hashedPassword)=>{
                 //generate the date in dd/mm/yyyy
@@ -81,7 +79,7 @@ router.post('/login',(req,res)=>{
     console.log("Signing in route...");
     //const {username,password,rememberMe} = req.body;
     const {username,password} = req.body;
-    console.log(req.body);
+    //console.log(req.body);
 
     if(username == "" || password == ""){
         res.json({message:"Please fill all the fields",success:false});
@@ -110,11 +108,9 @@ router.post('/login',(req,res)=>{
                             console.log("Successful sign in...")
                             token = temp;
                             //attach rememebr me bool to the client cookie
-                            //oneYearToSeconds = 365*24*60*60;
                             //res.cookie("doRememebrMe",rememberMe,{maxAge:oneYearToSeconds});
                             //attach user data to req
                             req.user = dbUser;
-                            //console.log(token);
                             res.json({message:"Successfully Signed In",token:token,success:true,user : req.user})
                         }
                     })
@@ -127,34 +123,3 @@ router.post('/login',(req,res)=>{
 })
 
 module.exports = router;
-
-
-/*
-Successfull connection with mongodb...
-{
-  name: 'Ganu',
-  orgName: 'Hp',
-  mobNo: '9738971585',
-  email: 'ganu@ymail.com',
-  imgURL: 'www.google.com/images/pic',
-  empID: '123'
-}
-*/
-
-/*
-{
-	"name":"Ganu",
-	"orgName":"Hp",
-	"mobNo":"9738971585",
-	"email":"ganu@ymail.com",
-	"imgURL":"www.google.com/images/pic",
-	"empID":"123"
-}
-*/
-
-/*
-{
-    "message": "Successfully signed in",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWduZWRSZWdJRCI6IjE2MTAyNjc1NjkyMzYiLCJpYXQiOjE2MTAyNzAzMjR9.9P5DtjoyiruExShvDADpLzQcNO1SR50QSQt1HDLUcBg"
-}
-*/

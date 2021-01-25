@@ -27,11 +27,8 @@ function Menu(){
 
     //get the menu from server
     useEffect(()=>{
-        console.log("Called once");
         fetch("/menu").then(res=>res.json()).then((items)=>{
             let temp = [];
-            console.log("Items:::::");
-            console.log(items);
             for(let i = 0; i < items.menu.length; i++){                
                 for(let j = 0; j < items.menu[i].items.length; j++) items.menu[i].items[j].quantity = 0;
                 temp.push(items.menu[i]);
@@ -47,7 +44,6 @@ function Menu(){
                 cost += menu[i].items[j].quantity * menu[i].items[j].price;
             }
         }
-        console.log(cost)
         if(cost > 0){
             setCheckout(true)
         }else{
@@ -56,8 +52,6 @@ function Menu(){
     }
 
     const addItem = (product)=>{
-        //console.log("Added Item: "+product.text);
-        //console.log(order)
         const category = menu.findIndex(p => p.category === product.category);
         if(category >= 0){
             const item = menu[category].items.findIndex(p => p.name === product.text);

@@ -25,7 +25,7 @@ h1 {
 
 .foodItem {
   display: flex; 
-  width: 350px;
+  width: 250px;
   margin: 0.8rem;
   border-radius: 10px;  
 }

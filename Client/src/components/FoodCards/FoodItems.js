@@ -9,6 +9,7 @@ function FoodItem(props) {
             <img
               className='food-item-img'
               src={props.src}
+              alt="food image"
             />
           </figure>
           <div className='food-item-info'>

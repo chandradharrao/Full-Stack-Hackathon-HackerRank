@@ -1,7 +1,7 @@
 .payment-card {
-    max-width:30%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    max-width:40%;
+    margin-top: 0.5%;
+    padding-bottom: 0.5%;
     margin-left: auto; /*To center it*/
     margin-right: auto;
     text-align: center;
@@ -11,7 +11,7 @@
 .payment-holder {
     background-color: black;
     color: aliceblue;
-    padding:1%
+    padding:1%;
 }
 
 .payment-title {
@@ -26,35 +26,27 @@
     padding:3%;
 }
 
-.pay-img-holder-google:hover {
+.pay-img-holder{
+    height: 15vh;
+}
+
+.pay-img-holder:hover {
     opacity: 0.7px;
     cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.pay-img-holder-apple:hover {
-    opacity: 0.7px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.pay-img-holder-visa:hover {
-    opacity: 0.7px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.pay-img-holder-google{
+#google{
     background-color: rgb(243, 152, 152);
     margin:2%;
 }
 
-.pay-img-holder-apple{
+#apple{
     background-color: rgb(177, 177, 245);
     margin:2%;
 }
 
-.pay-img-holder-visa{
+#visa{
     background-color: rgb(246, 218, 141);
     margin:2%;
 }

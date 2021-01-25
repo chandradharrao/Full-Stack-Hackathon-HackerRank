@@ -3,8 +3,7 @@ import {Link,useHistory} from 'react-router-dom';
 import {UserDetailsContext} from "../../../App"
 import { toast } from 'react-toastify';
 import "./Signin.css"
-import axios from "axios";
-//import 'react-toastify/dist/ReactToastify.css'
+
 toast.configure();
 
 function SignIn(){
@@ -34,18 +33,6 @@ function SignIn(){
     function onClickHandler(event){
         //prevent default action of reloading
         event.preventDefault()
-        //debugger;
-        //make a post request to server sign in
-        /*const reqOptions = { 
-            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}, 
-            credentials: 'include',
-            method: 'POST', 
-            body: JSON.stringify({
-            username,
-            password,
-            rememberMe : rem
-        })
-    }*/
         const reqOptions = {
             method:"POST",
             headers:{'Content-Type': 'application/json'},
@@ -55,10 +42,10 @@ function SignIn(){
             })
         };
         console.log("Trying to fetch...")
-        //debugger;
+        
         fetch("/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
             console.log("Made fetch req and recieved res")
-            //debugger;
+            
             //loading
             setLoad(<div className="progress">
                         <div className="indeterminate"></div>
@@ -125,13 +112,3 @@ function SignIn(){
 }
 
 export default SignIn;
-
-
-/*
-,'Authorization': `Bearer ${localStorage.getItem("jwt")}`
-*/
-
-/*
-1610385286469
-1235
-*/

@@ -1,4 +1,4 @@
-import {useEffect, useState,useReducer, useContext} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {useHistory,Link} from 'react-router-dom'
 import PreviewForm from './PreviewForm';
 import { toast } from 'react-toastify';
@@ -74,10 +74,6 @@ function RegForm(){
                         },
                         body:JSON.stringify(data)
                         }).then((res)=>{
-                            /*console.log(res)
-                            console.log("res => " + res + " has type " + typeof res);
-                            console.log("Before converting to json,id is " + res.regID)*/
-                            //when using curly braces we need to return or else no need to return
                             return res.json();
                         }).then((serverData)=>{
                             //console.log(serverData);
@@ -148,7 +144,6 @@ function RegForm(){
                     }
                 }
             }
-            ///console.log("Setting error message...")
             //set all the errors captured
             setErrMsgs(temp);
         }

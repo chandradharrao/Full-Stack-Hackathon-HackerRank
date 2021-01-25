@@ -1,7 +1,0 @@
-[
-    {"name":"Masala Dosa" ,"price": "10","quantity":"0", "description": "A dosa or dose is a thin pancake or crepe, originating from South India, made from a fermented batter predominantly consisting of lentils and rice. It is somewhat similar to a crepe in appearance, although savoury flavours are generally emphasized."},
-    {"name":"Puri Sagu","price":"20","quantity":"0"},
-    {"name":"Pav Bhaji","price":"30","quantity":"0"},
-    {"name":"Pasta","price":"100","quantity":"0"},
-    {"name":"Tea","price":"10","quantity":"0"}
-]

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd Client && yarn install && yarn run build"
+    "heroku-postbuild": "cd Client && yarn install && yarn run build",
+    "dev": "(cd Client && yarn run start) & yarn run start"
   },
   "author": "Chandradhar Rao, Dhruval PB",
   "license": "ISC",

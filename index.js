@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGO,{useNewUrlParser: true ,useUnifiedTopology: t
 //cookie parser middle wear
 //app.use(cookieParser)
 
-require('./Database/Models/user');
+require('./Data/Models/user');
 
 const auth = require('./Routes/auth');
 const menu = require("./Routes/menu")
