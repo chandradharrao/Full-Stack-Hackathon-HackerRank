@@ -10,15 +10,7 @@ function Menu(){
     const [order,setOrder] = useState([]);
     const [menu,setMenu] = useState([]);
     const [showCheckout, setCheckout] = useState(false);
-/*
-    function onChangeHandler(event){
-        let temp = order.map((item)=>{
-            return item
-        });
-        temp.push(event.target.value);
-        setOrder(temp);
-    }
-*/
+
     function placeOrder(){
         //let fd = {name:null,price:null};
         let cost = 0;
@@ -27,44 +19,22 @@ function Menu(){
                 cost += menu[i].items[j].quantity * menu[i].items[j].price;
             }
         }
-       //alert("The cost is " + cost);
-       setTimeout(() => {
         history.push('/payment/' + cost);
-       }, 1500);
-        /*
-        console.log(fd);
-        //post data to server
-        fetch('/book',{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization" : "Bearer " + localStorage.getItem("jwt")
-            },body:JSON.stringify(fd)
-        }).then(res=>res.json()).then((data)=>{
-            if(data.success){
-                //redirect to the payment page
-                history.push('/payment')
-            }
-            else{
-                //make toast
-            }
-        })*/
     }
 
     //get the menu from server
     useEffect(()=>{
-        console.log("Called once");
-        fetch("/menu").then(res=>res.json()).then((items)=>{
+        fetch("/menu", {headers : {method:"GET",'Accept': 'application/json'}}).then(res=>res.json()).then((items)=>{
             let temp = [];
-            console.log("Items:::::");
-            console.log(items);
             for(let i = 0; i < items.menu.length; i++){                
                 for(let j = 0; j < items.menu[i].items.length; j++) items.menu[i].items[j].quantity = 0;
                 temp.push(items.menu[i]);
             }
             setMenu(temp);
-        })
-    },[])
+        }).catch(err => {
+            alert(err);
+            console.log(err);
+        })},[])
 
     function updateCheckoutFooter(){
         let cost = 0;
@@ -73,7 +43,6 @@ function Menu(){
                 cost += menu[i].items[j].quantity * menu[i].items[j].price;
             }
         }
-        console.log(cost)
         if(cost > 0){
             setCheckout(true)
         }else{
@@ -82,8 +51,6 @@ function Menu(){
     }
 
     const addItem = (product)=>{
-        //console.log("Added Item: "+product.text);
-        //console.log(order)
         const category = menu.findIndex(p => p.category === product.category);
         if(category >= 0){
             const item = menu[category].items.findIndex(p => p.name === product.text);

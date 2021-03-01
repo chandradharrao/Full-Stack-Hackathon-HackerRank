@@ -8,10 +8,10 @@ function FoodCards(props) {
                 return [
                     <FoodItem
                       key = {id}
-                      src='/food.jpg'
+                      src='/food.jpg' // Could be taken from the menu object itself
                       text={item.name}
                       description = {item.description}
-                      label='Not spicy'
+                      //label='Not spicy' // This could also be parsed from the menu object and can be shown appropriately on the cards
                       addItem={props.addItem}
                       removeItem={props.removeItem}
                       price={item.price}

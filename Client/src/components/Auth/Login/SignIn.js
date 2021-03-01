@@ -3,7 +3,7 @@ import {Link,useHistory} from 'react-router-dom';
 import {UserDetailsContext} from "../../../App"
 import { toast } from 'react-toastify';
 import "./Signin.css"
-//import 'react-toastify/dist/ReactToastify.css'
+
 toast.configure();
 
 function SignIn(){
@@ -33,18 +33,6 @@ function SignIn(){
     function onClickHandler(event){
         //prevent default action of reloading
         event.preventDefault()
-        //debugger;
-        //make a post request to server sign in
-        /*const reqOptions = { 
-            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json'}, 
-            credentials: 'include',
-            method: 'POST', 
-            body: JSON.stringify({
-            username,
-            password,
-            rememberMe : rem
-        })
-    }*/
         const reqOptions = {
             method:"POST",
             headers:{'Content-Type': 'application/json'},
@@ -53,34 +41,32 @@ function SignIn(){
                 password
             })
         };
-        console.log("Trying to fetch...")
-        //debugger;
+        //console.log("Trying to fetch...")
+        
         fetch("/login",reqOptions).then(res=>{return res.json()}).then((data)=>{
-            console.log("Made fetch req and recieved res")
-            //debugger;
+            //console.log("Made fetch req and recieved res")
+            
             //loading
             setLoad(<div className="progress">
                         <div className="indeterminate"></div>
                     </div>)
-            console.log(data);
+            //console.log(data);
             if(data.success){
                 //make a toast with success massage
                 toast.success(data.message);
 
                 //store token and user info present in response in local storage
                 localStorage.setItem("jwt",data.token);
-                console.log(data.user);
+                //console.log(data.user);
                 localStorage.setItem("user",JSON.stringify(data.user));
-                console.log("Successfull login.....")
+                //console.log("Successfull login.....")
 
                 //only dispatch is allowed to change state by dispatching action
                 //store user data in redux state
                 dispatch({type:"SET_USER_DETAILS",payload:data.user})
                 
                 //navigate user to menu
-                setTimeout(()=>{
-                    history.push('/menu');
-                },1000)
+                history.push('/menu');               
             }else{
                 setLoad(null);
                 //make toast with failure message
@@ -124,13 +110,3 @@ function SignIn(){
 }
 
 export default SignIn;
-
-
-/*
-,'Authorization': `Bearer ${localStorage.getItem("jwt")}`
-*/
-
-/*
-1610385286469
-1235
-*/

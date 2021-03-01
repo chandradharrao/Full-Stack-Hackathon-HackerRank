@@ -1,0 +1,21 @@
+[
+    {
+        "category":"South Indian",
+        "items": [
+            {"name":"Masala Dosa" ,"price": "10", "description": "This is a place for describing the food"},
+            {"name":"Puri Sagu","price":"20", "description":"This is a place for describing the food"},
+            {"name":"Masala Idly" ,"price": "10", "description": "This is a place for describing the food"},
+            {"name":"Masala Vada" ,"price": "10", "description": "This is a place for describing the food"},
+            {"name":"Idly" ,"price": "10", "description": "This is a place for describing the food"},
+            {"name":"Vada" ,"price": "10", "description": "This is a place for describing the food"}
+        ]
+    },
+    {
+        "category":"Others",
+        "items": [
+            {"name":"Pav Bhaji","price":"30",  "description":"This is a place for describing the food"},
+            {"name":"Pasta","price":"100",  "description":"This is a place for describing the food"},
+            {"name":"Tea","price":"10",  "description":"This is a place for describing the food"}
+        ] 
+    }
+]

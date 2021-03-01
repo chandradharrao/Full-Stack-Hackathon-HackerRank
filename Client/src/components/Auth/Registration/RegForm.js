@@ -1,4 +1,4 @@
-import {useEffect, useState,useReducer, useContext} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {useHistory,Link} from 'react-router-dom'
 import PreviewForm from './PreviewForm';
 import { toast } from 'react-toastify';
@@ -74,10 +74,6 @@ function RegForm(){
                         },
                         body:JSON.stringify(data)
                         }).then((res)=>{
-                            /*console.log(res)
-                            console.log("res => " + res + " has type " + typeof res);
-                            console.log("Before converting to json,id is " + res.regID)*/
-                            //when using curly braces we need to return or else no need to return
                             return res.json();
                         }).then((serverData)=>{
                             //console.log(serverData);
@@ -96,13 +92,8 @@ function RegForm(){
                                 dispatch({type:"SET_USER_DETAILS",payload:serverData.user})
                                 localStorage.setItem("user",JSON.stringify(serverData.user));
                                 localStorage.setItem("jwt",serverData.token);
-
-                                setTimeout(() => {
-                                    //navigate the user manually to the successpage
-                                    history.push('/successpage/' + id + "/" + empID);
-                                }, 2500);
+                                history.push('/successpage/' + id + "/" + empID);
                             }else{
-                                //ToDo : create a toast for failure
                                 toast.error(serverData.message);
                                 setLoad(null);
                                 //console.log("Server sent error " + serverData.error)
@@ -148,7 +139,6 @@ function RegForm(){
                     }
                 }
             }
-            ///console.log("Setting error message...")
             //set all the errors captured
             setErrMsgs(temp);
         }
@@ -246,9 +236,9 @@ function RegForm(){
         }
 
         //remove white spaces and check for length of name
-        if(name.trim().length < 5){
+        if(name.trim().length < 3){
             //console.log("Name should be atleast 5 characters long");
-            temp.name.shortName = "Name should be atleast 5 characters long";
+            temp.name.shortName = "Name should be atleast 3 characters long";
             isValid = false;
         }
 
@@ -412,10 +402,10 @@ function RegForm(){
                         </div>
                         Upload ID Card
                         <div>
-                            <input className="reg" className="upload" required={true} type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
+                            <input className="upload" required={true} type="file" onChange={(event)=>onChangeHandler(event)} id="img-input"/>
                         </div>
                         <input type = "button" className="reg" className='submit' onClick={(event)=>formValidation(event)} value="SIGN UP"></input>
-                        <br/> <br/>
+                        <br/> 
                         <Link  className="already" to="/signin">Already Have an account?</Link>
                     </form>
                 </div>

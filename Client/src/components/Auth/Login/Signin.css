@@ -41,7 +41,6 @@
     border-radius: 0px 20px 20px 0px;
     padding: 2%;
     height: 80%;
-    opacity: 90%;
     width: 50%;
 }
 
@@ -60,7 +59,6 @@
 
 ::placeholder {
     color: rgb(139, 139, 139);
-    opacity: 1; /* Firefox */
   }
 
 .remember{
@@ -138,6 +136,7 @@ input{
     height: 50px;
     margin-top: 10px;
     border-radius: 2px;
+    cursor: pointer;
     background: linear-gradient(
         90deg,
         rgb(255, 39, 237) 0%,
@@ -147,14 +146,14 @@ input{
     border: none;
     color: #fff;
     font-size: 1rem;
+    transition: all 0.2s ease-out;
   }
   
-  .submit {
-    cursor: pointer;
-    background: linear-gradient(
-        90deg,
-        rgb(255, 39, 237) 0%,
-        rgb(86, 75, 248) 100%
-    );
-    transition: all 0.4s ease-out;
+  .submit:hover{
+    filter: brightness(125%);
+  }
+
+  .flipswitch:hover{
+    filter: brightness(125%);
+    transition: all 0.2s ease-out;
   }
